@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.usercadastro"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="453dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="27dp">
+
+        <Button
+            android:id="@+id/voltar"
+            android:layout_width="381dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_x="75dp"
+            android:layout_y="327dp"
+            android:background="@color/green"
+            android:text="voltar"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/userbotao"
+            android:layout_width="381dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/voltar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_x="193dp"
+            android:layout_y="329dp"
+            android:background="@color/green"
+            android:text="Cadastrar"
+            android:textColor="@color/white"
+            android:textColorLink="@color/white"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/userpass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/useradress"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:hint="Senha"
+            android:inputType="textPassword"
+            android:textColorHint="@color/bk"
+            android:textColorLink="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/useradress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/username"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/bk"
+            android:textColorLink="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="127dp"
+            android:ems="10"
+            android:hint="Nome"
+            android:inputType="textPersonName"
+            android:textColorHint="@color/bk"
+            android:textColorLink="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="51dp"
+            android:lineSpacingExtra="10sp"
+            android:text="Cadastro de Usuário"
+            android:textSize="24sp"
+            android:textStyle="bold|italic" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -14,11 +14,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.example.jelln.medispache.Adapter.ProdutosAdapter;
-import com.example.jelln.medispache.R;
-import com.example.jelln.medispache.control.Conexao;
-import com.example.jelln.medispache.model.Produtos;
-import com.example.jelln.medispache.view.Cadastrar_Produto;
+import com.example.jelln.medispachecliente.Adapter.ProdutosAdapter;
+import com.example.jelln.medispachecliente.R;
+import com.example.jelln.medispachecliente.control.Conexao;
+import com.example.jelln.medispachecliente.model.Produtos;
+import com.example.jelln.medispachecliente.view.Cadastrar_Produto;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

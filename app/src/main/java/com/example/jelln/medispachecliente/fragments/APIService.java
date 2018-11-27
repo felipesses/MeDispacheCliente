@@ -1,7 +1,7 @@
 package com.example.jelln.medispachecliente.fragments;
 
-import com.example.jelln.medispache.Notifications.MyResponse;
-import com.example.jelln.medispache.Notifications.Sender;
+import com.example.jelln.medispachecliente.Notifications.MyResponse;
+import com.example.jelln.medispachecliente.Notifications.Sender;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

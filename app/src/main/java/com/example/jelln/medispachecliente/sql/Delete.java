@@ -2,7 +2,7 @@ package com.example.jelln.medispachecliente.sql;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.jelln.medispache.model.Usuarios;
+import com.example.jelln.medispachecliente.model.Usuarios;
 
 public class Delete {
 

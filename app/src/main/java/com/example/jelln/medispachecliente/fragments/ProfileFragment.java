@@ -17,8 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.jelln.medispache.R;
-import com.example.jelln.medispache.model.Usuarios;
+import com.example.jelln.medispachecliente.R;
+import com.example.jelln.medispachecliente.model.Usuarios;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;

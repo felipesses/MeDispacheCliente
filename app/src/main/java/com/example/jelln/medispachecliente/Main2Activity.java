@@ -16,10 +16,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.jelln.medispache.control.Conexao;
-import com.example.jelln.medispache.fragments.ProfileFragment;
-import com.example.jelln.medispache.model.Usuarios;
-import com.example.jelln.medispache.view.login;
+import com.example.jelln.medispachecliente.control.Conexao;
+import com.example.jelln.medispachecliente.fragments.ProfileFragment;
+import com.example.jelln.medispachecliente.model.Usuarios;
+import com.example.jelln.medispachecliente.view.login;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

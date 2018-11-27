@@ -11,7 +11,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 
-import com.example.jelln.medispache.R;
+import com.example.jelln.medispachecliente.R;
 
 /**
  * Utility class for access to runtime permissions.

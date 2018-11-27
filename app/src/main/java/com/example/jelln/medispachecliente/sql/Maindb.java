@@ -3,7 +3,7 @@ package com.example.jelln.medispachecliente.sql;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.jelln.medispache.Myapp;
+import com.example.jelln.medispachecliente.Myapp;
 
 public class Maindb extends SQLiteOpenHelper {
     private static String NOME_DB = "DB";

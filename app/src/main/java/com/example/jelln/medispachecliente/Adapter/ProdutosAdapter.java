@@ -13,9 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.jelln.medispache.R;
-import com.example.jelln.medispache.model.Produtos;
-import com.example.jelln.medispache.view.Atualizar_Produto;
+import com.example.jelln.medispachecliente.R;
+import com.example.jelln.medispachecliente.model.Produtos;
+import com.example.jelln.medispachecliente.view.Atualizar_Produto;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;

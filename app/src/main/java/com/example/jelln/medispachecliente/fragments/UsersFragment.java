@@ -12,11 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.example.jelln.medispache.Adapter.UserAdapter;
-import com.example.jelln.medispache.Notifications.Token;
-import com.example.jelln.medispache.R;
-import com.example.jelln.medispache.control.Conexao;
-import com.example.jelln.medispache.model.Usuarios;
+import com.example.jelln.medispachecliente.Adapter.UserAdapter;
+import com.example.jelln.medispachecliente.Notifications.Token;
+import com.example.jelln.medispachecliente.R;
+import com.example.jelln.medispachecliente.control.Conexao;
+import com.example.jelln.medispachecliente.model.Usuarios;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

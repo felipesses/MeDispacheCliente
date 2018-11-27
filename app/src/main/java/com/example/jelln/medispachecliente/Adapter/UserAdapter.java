@@ -11,11 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.jelln.medispache.R;
-import com.example.jelln.medispache.model.Chat;
-import com.example.jelln.medispache.model.Produtos;
-import com.example.jelln.medispache.model.Usuarios;
-import com.example.jelln.medispache.view.MessageActivity;
+import com.example.jelln.medispachecliente.R;
+import com.example.jelln.medispachecliente.model.Chat;
+import com.example.jelln.medispachecliente.model.Produtos;
+import com.example.jelln.medispachecliente.model.Usuarios;
+import com.example.jelln.medispachecliente.view.MessageActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

@@ -3,19 +3,56 @@
     package="com.example.jelln.medispachecliente">
 
     <application
+        android:name=".Myapp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logopn"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logopn"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".view.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".view.ResetSenha"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.usercadastro"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.login"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.MessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+
+        <service
+            android:name=".Notifications.MyFirebaseIdService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".Notifications.MyFirebaseMessaging"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".view.Cadastrar_Produto" />
+        <activity android:name=".view.Atualizar_Produto" />
+        <activity android:name=".Main2Activity"></activity>
     </application>
 
 </manifest>
