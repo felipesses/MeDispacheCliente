@@ -8,9 +8,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.jelln.medispache.MainActivity;
-import com.example.jelln.medispache.R;
-import com.example.jelln.medispache.model.Produtos;
+import com.example.jelln.medispachecliente.MainActivity;
+import com.example.jelln.medispachecliente.R;
+import com.example.jelln.medispachecliente.model.Produtos;
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import com.google.firebase.auth.FirebaseAuth;

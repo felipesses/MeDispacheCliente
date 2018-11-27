@@ -8,8 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.example.jelln.medispache.MainActivity;
-import com.example.jelln.medispache.R;
+import com.example.jelln.medispachecliente.MainActivity;
+import com.example.jelln.medispachecliente.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

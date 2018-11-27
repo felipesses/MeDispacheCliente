@@ -14,17 +14,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.jelln.medispache.Adapter.MessageAdapter;
-import com.example.jelln.medispache.MainActivity;
-import com.example.jelln.medispache.Notifications.Client;
-import com.example.jelln.medispache.Notifications.Data;
-import com.example.jelln.medispache.Notifications.MyResponse;
-import com.example.jelln.medispache.Notifications.Sender;
-import com.example.jelln.medispache.Notifications.Token;
-import com.example.jelln.medispache.R;
-import com.example.jelln.medispache.fragments.APIService;
-import com.example.jelln.medispache.model.Chat;
-import com.example.jelln.medispache.model.Usuarios;
+import com.example.jelln.medispachecliente.Adapter.MessageAdapter;
+import com.example.jelln.medispachecliente.MainActivity;
+import com.example.jelln.medispachecliente.Notifications.Client;
+import com.example.jelln.medispachecliente.Notifications.Data;
+import com.example.jelln.medispachecliente.Notifications.MyResponse;
+import com.example.jelln.medispachecliente.Notifications.Sender;
+import com.example.jelln.medispachecliente.Notifications.Token;
+import com.example.jelln.medispachecliente.R;
+import com.example.jelln.medispachecliente.fragments.APIService;
+import com.example.jelln.medispachecliente.model.Chat;
+import com.example.jelln.medispachecliente.model.Usuarios;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -108,7 +108,7 @@ public class MessageActivity extends AppCompatActivity {
 
 
 
-        reference = FirebaseDatabase.getInstance().getReference("User").child(userid);
+        reference = FirebaseDatabase.getInstance().getReference("UserEmpresa").child(userid);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -209,7 +209,7 @@ public class MessageActivity extends AppCompatActivity {
 
 
         final String msg = message;
-        reference = FirebaseDatabase.getInstance().getReference("UserEmpresa").child(user.getUid());
+        reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -293,7 +293,7 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
     }public void status(String status){
-        reference = FirebaseDatabase.getInstance().getReference("UserEmpresa").child(user.getUid());
+        reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("status", status);
         reference.updateChildren(hashMap);

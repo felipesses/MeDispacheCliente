@@ -58,7 +58,7 @@ public class Main2Activity extends AppCompatActivity {
         profilie_image.setImageResource(R.drawable.back);
         auth = Conexao.getFirebaseAuth();
         user = auth.getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("UserEmpresa").child(user.getUid());
+        reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
         //     eventoclick();
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -180,7 +180,7 @@ public class Main2Activity extends AppCompatActivity {
     }
     public void status(String status){
         if(u!=null){
-            reference = FirebaseDatabase.getInstance().getReference("UserEmpresa").child(user.getUid());
+            reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
             HashMap<String, Object> hashMap = new HashMap<>();
             hashMap.put("status", status);
             reference.updateChildren(hashMap);
