@@ -73,7 +73,7 @@ public class ProfileFragment extends Fragment {
         atualizar.setVisibility(View.GONE);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
-        referece = FirebaseDatabase.getInstance().getReference("UserEmpresa").child(user.getUid());
+        referece = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
         referece.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -112,7 +112,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String nomepego = nomemudar.getText().toString().trim();
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("UserEmpresa").child(user.getUid());
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
                 HashMap<String, Object> hashMap = new HashMap<>();
                 hashMap.put("name", nomepego);
                 hashMap.put("search", nomepego.toLowerCase());
@@ -179,7 +179,7 @@ public class ProfileFragment extends Fragment {
                     if (task.isSuccessful()) {
                         Uri downloadUri = task.getResult();
                         String mUri = downloadUri.toString();
-                        referece = FirebaseDatabase.getInstance().getReference("UserEmpresa").child(user.getUid());
+                        referece = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
                         HashMap<String, Object> map = new HashMap<>();
                         map.put("imageUrl", mUri);
                         referece.updateChildren(map);

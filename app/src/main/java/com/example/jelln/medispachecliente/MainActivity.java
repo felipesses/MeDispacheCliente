@@ -21,6 +21,7 @@ import com.example.jelln.medispachecliente.control.Conexao;
 import com.example.jelln.medispachecliente.fragments.ChatsFragment;
 import com.example.jelln.medispachecliente.fragments.PedidosFragment;
 import com.example.jelln.medispachecliente.fragments.Produto_fragment;
+import com.example.jelln.medispachecliente.fragments.UsersFragment;
 import com.example.jelln.medispachecliente.model.Chat;
 import com.example.jelln.medispachecliente.model.Usuarios;
 import com.example.jelln.medispachecliente.view.login;
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         final TabLayout tabLayout = findViewById(R.id.tab_layout);
         ViewPager viewPager = findViewById(R.id.view_pager);
         ViewPageAdapter viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager());
-        viewPageAdapter.addFragment(new ChatsFragment(), "Empresas");
+        viewPageAdapter.addFragment(new UsersFragment(), "Empresas");
         viewPageAdapter.addFragment(new PedidosFragment(), "Pedidos");
 
 
