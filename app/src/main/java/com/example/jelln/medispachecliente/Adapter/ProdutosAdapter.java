@@ -13,26 +13,44 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jelln.medispachecliente.MainActivity;
+import com.example.jelln.medispachecliente.Notifications.Client;
+import com.example.jelln.medispachecliente.Notifications.Data;
+import com.example.jelln.medispachecliente.Notifications.MyResponse;
+import com.example.jelln.medispachecliente.Notifications.Sender;
+import com.example.jelln.medispachecliente.Notifications.Token;
 import com.example.jelln.medispachecliente.R;
+import com.example.jelln.medispachecliente.fragments.APIService;
 import com.example.jelln.medispachecliente.model.Produtos;
+import com.example.jelln.medispachecliente.model.Usuarios;
 import com.example.jelln.medispachecliente.view.Atualizar_Produto;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
-public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHolder> {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
+public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHolder> {
+    FirebaseUser user;
     private Context mContext;
     private List<Produtos> mProdutos;
-
-    public ProdutosAdapter(Context mContext, List<Produtos> mProdutos){
+    APIService apiService;
+    boolean notify =false;
+    String userid;
+    public ProdutosAdapter(Context mContext, List<Produtos> mProdutos, String userid){
 
         this.mProdutos = mProdutos;
         this.mContext = mContext;
-
+        this.userid = userid;
     }
 
 
@@ -41,7 +59,8 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+        apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
+        user = FirebaseAuth.getInstance().getCurrentUser();
         View view = LayoutInflater.from(mContext).inflate(R.layout.produtos_item, parent, false);
         return new ViewHolder(view);
 
@@ -58,7 +77,7 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
         holder.botao_mp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, Atualizar_Produto.class);
+                /*Intent intent = new Intent(mContext, Atualizar_Produto.class);
                 Bundle bundle = new Bundle();
 
                 bundle.putString("nome", produtos.getNome() );
@@ -66,23 +85,36 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
                 bundle.putString("valor", produtos.getValor() );
                 bundle.putString("id", produtos.getId());
                 intent.putExtras(bundle);
-                mContext.startActivity(intent);
+                mContext.startActivity(intent);*/
+                notify = true;
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
+                reference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Usuarios u = dataSnapshot.getValue(Usuarios.class);
+                        if(notify) {
+                            sendNotification(userid, u.getName(), produtos.getNome());
+                            alert("Pedido concluído");
+                            Intent intent = new Intent(mContext, MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            mContext.startActivity(intent);
+
+                        }
+                        notify = false;
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
 
             }
         });
 
 
-        holder.botao_del.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("ProdutosEmpresa").child(user.getUid()).child(produtos.getId());
-                databaseReference.removeValue();
-                alert("Container: "+produtos.getNome()+" removido.");
 
-            }
-        });
 
 
     }
@@ -91,6 +123,43 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
     public int getItemCount() {
         return mProdutos.size();
     }
+    private void sendNotification(String receiver, final String username, final String message){
+        DatabaseReference tokens = FirebaseDatabase.getInstance().getReference("Tokens");
+        Query query = tokens.orderByKey().equalTo(receiver);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Token token = snapshot.getValue(Token.class);
+                    Data data = new Data(user.getUid(),  R.drawable.ic_motivo, username+": "+message, "Novo pedido",
+                            userid);
+                    Sender sender = new Sender(data, token.getToken());
+                    apiService.sendNotification(sender)
+                            .enqueue(new Callback<MyResponse>() {
+                                @Override
+                                public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+                                    if(response.code() == 200){
+                                        if(response.body().success!=1){
+
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<MyResponse> call, Throwable t) {
+
+                                }
+                            });
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
 
 
     public class ViewHolder extends  RecyclerView.ViewHolder {
@@ -98,14 +167,12 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
         public TextView tipo;
         public ImageView profile_image;
         public ImageButton botao_mp;
-        public ImageButton botao_del;
         public ViewHolder(View itemView){
             super(itemView);
             tipo = itemView.findViewById(R.id.tipo);
             profile_image = itemView.findViewById(R.id.container_img);
             quantidade = itemView.findViewById(R.id.quantidade);
-            botao_mp = itemView.findViewById(R.id.atualizar);
-            botao_del = itemView.findViewById(R.id.deletar);
+            botao_mp = itemView.findViewById(R.id.comprar);
 
 
 

@@ -38,10 +38,10 @@ public class Produto_fragment extends Fragment {
     private ProdutosAdapter produtosAdapter;
     private List<Produtos> mProdutos;
     ImageButton cadastro;
+    String userid;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_produto_fragment, container, false);
 
         // Inflate the layout for this fragment
@@ -70,7 +70,7 @@ public class Produto_fragment extends Fragment {
     private void readUsers() {
         FirebaseAuth firebaseAuth = Conexao.getFirebaseAuth();
         final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("ProdutosEmpresa").child(firebaseUser.getUid());
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("ProdutosEmpresa").child(userid);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -81,7 +81,7 @@ public class Produto_fragment extends Fragment {
                         mProdutos.add(produtos);
                     }
 
-                    produtosAdapter = new ProdutosAdapter(getContext(), mProdutos);
+                    produtosAdapter = new ProdutosAdapter(getContext(), mProdutos, userid);
                     recyclerView.setAdapter(produtosAdapter);
 
             }
