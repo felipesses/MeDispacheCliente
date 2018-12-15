@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.jelln.medispachecliente">
+    package="com.example.megam.medispachecliente">
 
     <application
         android:name=".Myapp"
@@ -54,6 +54,8 @@
         <activity android:name=".view.Atualizar_Produto" />
         <activity android:name=".Main2Activity" />
         <activity android:name=".Main3Activity" />
+        <activity android:name=".Main4Activity" />
+
     </application>
 
 </manifest>

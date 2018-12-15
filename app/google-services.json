@@ -93,6 +93,50 @@
           "status": 2
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:735916909807:android:bca7cf90c918af35",
+        "android_client_info": {
+          "package_name": "com.example.megam.medispachecliente"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "735916909807-sj3no64qdunkd11ofppbdjctoq7enk66.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.megam.medispachecliente",
+            "certificate_hash": "d8b46ec795a1b2fae9d4ad482aa91f86e1cd889b"
+          }
+        },
+        {
+          "client_id": "735916909807-deqqq3c4bdmrhfhsvcfba7ccbleq4pqq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6dEB7JAL2WzqjvGUyy8oyChvdR9bN0wg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "735916909807-deqqq3c4bdmrhfhsvcfba7ccbleq4pqq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
     }
   ],
   "configuration_version": "1"
