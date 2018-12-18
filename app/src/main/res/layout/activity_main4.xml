@@ -60,18 +60,20 @@
                 >
 
                 <ImageView
-                    android:src="@drawable/me_time"
+                    android:src="@drawable/wine"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+
                 <TextView
-                    android:text="Me"
+                    android:text="Depósitos"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+
 
             </LinearLayout>
 
@@ -99,12 +101,12 @@
                 >
 
                 <ImageView
-                    android:src="@drawable/family_time"
+                    android:src="@drawable/restaurant"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
-                    android:text="Family"
+                    android:text="Restaurantes"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
