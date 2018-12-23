@@ -34,7 +34,7 @@ public class Splash extends AppCompatActivity {
                 if(user != null){
                     alert("Conectando: "+user.getEmail());
 
-                    Intent i = new  Intent(getApplicationContext(), MainActivity.class);
+                    Intent i = new  Intent(getApplicationContext(), Main4Activity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);
                     finish();
