@@ -10,13 +10,24 @@
         android:roundIcon="@drawable/iconetres"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.Splash">
+
+        <activity android:name=".view.Splashscreen"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <!--<activity android:name=".view.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>-->
         <activity
             android:name=".view.ResetSenha"
             android:screenOrientation="portrait" />
