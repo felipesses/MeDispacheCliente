@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/container_img"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/container_img"
+        android:layout_marginTop="20dp"
+        android:padding="2dp"
+        android:id="@+id/infor"
+        android:textColor="@color/sub"
+        android:maxLines="1"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"
+        android:text="Informações do pedido"
+        />
+
+    <TextView
+        android:id="@+id/vpedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/infor"
+        android:text="Valor do Pedido: "
+        android:layout_marginTop="20dp"
+        android:textSize="21sp"
+        android:textColor="@color/negra"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/vpedido"
+        android:layout_below="@id/infor"
+        android:id="@+id/value"
+        android:text="123"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        />
+
+    <TextView
+        android:id="@+id/vdelivery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/vpedido"
+        android:text="Valor do Delivery: "
+        android:layout_marginTop="20dp"
+        android:textSize="21sp"
+        android:textColor="@color/negra"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/vdelivery"
+        android:layout_below="@id/vpedido"
+        android:id="@+id/valuedelivery"
+        android:text="123"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        />
+    <TextView
+        android:id="@+id/qtd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/vdelivery"
+        android:text="Quantidade: "
+        android:layout_marginTop="20dp"
+        android:textSize="21sp"
+        android:textColor="@color/negra"
+        />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/vdelivery"
+        android:layout_toRightOf="@id/qtd"
+        android:textSize="20dp"
+        android:text="Quantidade"
+        android:layout_marginTop="7dp"
+        android:textColor="@color/sub"
+        />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/qtd"
+        android:text="Tempo de entrega: "
+        android:layout_marginTop="20dp"
+        android:textSize="21sp"
+        android:textColor="@color/negra"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/qtd"
+        android:layout_toRightOf="@id/time"
+        android:textSize="20dp"
+        android:text="Tempo"
+        android:layout_marginTop="20dp"
+        />
+    <TextView
+        android:id="@+id/locus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/time"
+        android:text="AQUI A DESGRAÇA DO LOCAL DE ENTREGA"
+        android:layout_marginTop="20dp"
+        android:textSize="21sp"
+        />
+
+    <Button
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/locus"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:text="Me Dispache"
+        android:textColor="@color/negra"
+        android:textSize="20dp"
+
+        />
+
+
+</RelativeLayout>

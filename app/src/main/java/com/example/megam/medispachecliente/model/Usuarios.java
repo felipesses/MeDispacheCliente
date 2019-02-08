@@ -10,6 +10,26 @@ public class Usuarios {
     private String ImageUrl;
     private String Status;
     private String search;
+    private String cidade;
+    private String endereco;
+
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
 
     public String getSearch() {
         return search;
@@ -75,4 +95,6 @@ public class Usuarios {
                 ", senha='" + senha + '\'' +
                 '}';
     }
+
+
 }

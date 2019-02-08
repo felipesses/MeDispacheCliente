@@ -11,9 +11,9 @@
     tools:context=".MainActivity">
 
     <RelativeLayout
-        android:layout_weight="3"
+        android:layout_weight="2"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/nomeuser"
@@ -22,6 +22,19 @@
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+       <!-- <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:hint="pesquisar..."
+            android:id="@+id/search_user"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_below="@id/search_user"
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            ></android.support.v7.widget.RecyclerView>-->
     </RelativeLayout>
 
 
@@ -29,7 +42,7 @@
         android:id="@+id/maingrid"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="8"
+        android:layout_weight="5"
         android:alignmentMode="alignMargins"
         android:columnCount="2"
         android:columnOrderPreserved="false"
@@ -44,14 +57,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center_vertical"
-            android:layout_margin="44dp"
+            android:layout_margin="50dp"
             android:orientation="vertical">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/wine" />
+                android:src="@drawable/dep" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -79,7 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/restaurant" />
+                android:src="@drawable/rest" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -109,12 +122,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/garrafa" />
+                android:src="@drawable/agas" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gás e Água"
+                android:text="Água e Gás"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
@@ -137,12 +150,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/lanche" />
+                android:src="@drawable/lanch" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lanchonetes"
+                android:text="Lanches"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"

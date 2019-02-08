@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="440dp"
             android:layout_y="25dp"
-android:src="@drawable/splashng"
+            android:src="@drawable/splashf"
             tools:layout_editor_absoluteX="174dp"
             tools:layout_editor_absoluteY="191dp" />
 

@@ -6,9 +6,11 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.Spinner;
 
 import com.example.megam.medispachecliente.R;
 import com.example.megam.medispachecliente.control.Conexao;
@@ -25,6 +27,8 @@ public class usercadastro extends AppCompatActivity {
 
 
      EditText username, useradress, userpass;
+    Spinner cidade;
+
      Button userbotao, voltar;
      private FirebaseAuth auth;
   private FirebaseDatabase firebaseDatabase;
@@ -64,9 +68,11 @@ baac();
                 final   String name = username.getText().toString().trim();
                 final String email = useradress.getText().toString().trim();
                 final   String senha = userpass.getText().toString().trim();
+                final String cidades = cidade.getSelectedItem().toString();
 
-                if(!name.equals("")&&!email.equals("")&&!senha.equals("")){
-                    criarUser(email, senha, name);
+
+                if(!name.equals("")&&!email.equals("")&&!senha.equals("")&&!cidades.equals("Selecione uma Cidade")){
+                    criarUser(email, senha, name, cidades);
 
                 }else{
                     alert("preencha todos os dados");
@@ -87,7 +93,7 @@ baac();
         finish();
     }
 
-    private void criarUser(final String email, final String senha, final String name) {
+    private void criarUser(final String email, final String senha, final String name,  final  String cidades) {
         auth.createUserWithEmailAndPassword(email, senha).addOnCompleteListener(usercadastro.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -97,6 +103,7 @@ baac();
                     u.setSearch(name.toLowerCase());
                     u.setStatus("offline");
                     u.setSenha(senha);
+                    u.setCidade(cidades);
                     u.setId(auth.getUid());
                     databaseReference.child("User").child(auth.getUid()).setValue(u);
 
@@ -123,6 +130,9 @@ private void alert(String msg){
         useradress = findViewById(R.id.useradress);
         userpass = findViewById(R.id.userpass);
         voltar = findViewById(R.id.voltar);
+        cidade = findViewById(R.id.cidade);
+        ArrayAdapter arrayAdapter = ArrayAdapter.createFromResource(this, R.array.cidades, android.R.layout.simple_spinner_item);
+        cidade.setAdapter(arrayAdapter);
 
     }
 

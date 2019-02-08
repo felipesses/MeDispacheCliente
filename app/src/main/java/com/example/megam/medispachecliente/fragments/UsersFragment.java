@@ -50,7 +50,7 @@ public class UsersFragment extends Fragment {
         user = FirebaseAuth.getInstance().getCurrentUser();
         readUsers();
         search_users = view.findViewById(R.id.search_user);
-        search_users.setVisibility(View.GONE);
+        search_users.setVisibility(view.getVisibility()); //View.GONE
 
         if(user==null){
             search_users.addTextChangedListener(new TextWatcher() {

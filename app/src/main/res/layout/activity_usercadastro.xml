@@ -9,7 +9,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="453dp"
+        android:layout_height="600dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -43,6 +43,29 @@
             android:textColor="@color/white"
             android:textColorLink="@color/white"
             android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/cidade"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/userpass"
+            android:layout_marginLeft="60dp"
+            ></Spinner>
+
+        <EditText
+            android:id="@+id/houseAdress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/cidade"
+            android:ems="10"
+            android:hint="Rua e Nº"
+            android:inputType="textPersonName"
+            android:textColorHint="@color/bk"
+            android:textColorLink="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/userpass"
@@ -86,6 +109,7 @@
             android:textColorLink="@color/white"
             android:textSize="24sp"
             android:textStyle="bold" />
+
 
         <TextView
             android:id="@+id/textView"
