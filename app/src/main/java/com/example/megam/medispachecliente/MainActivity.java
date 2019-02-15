@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             }else{
               reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
    // eventoclick();
-        reference.addValueEventListener(new ValueEventListener() {
+        reference.addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
             if(dataSnapshot.exists()){

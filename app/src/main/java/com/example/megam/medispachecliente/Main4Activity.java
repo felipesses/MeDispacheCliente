@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.design.*;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
@@ -18,6 +19,10 @@ import com.example.megam.medispachecliente.view.Splash;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class Main4Activity extends AppCompatActivity {
@@ -26,6 +31,7 @@ public class Main4Activity extends AppCompatActivity {
     FirebaseAuth auth;
     TextView username;
     GridLayout maingrid;
+    DatabaseReference reference;
 
 
     @Override
@@ -33,32 +39,38 @@ public class Main4Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main4);
 
+/*        Toolbar tool = findViewById(R.id.toolbar);
+        setSupportActionBar(tool);
+        getSupportActionBar().setTitle("");*/
+
         maingrid = (GridLayout)findViewById(R.id.maingrid);
         username = findViewById(R.id.nomeuser);
         auth = Conexao.getFirebaseAuth();
         user = auth.getCurrentUser();
-        Usuarios u = new Usuarios();
-
-
-
-    /*    u.getName();
-        username.setText(u.getName());*/
-
-
-      setSingleEvent(maingrid);
-
-
-
-
 
         if(user == null){
             username.setVisibility(View.GONE);
+        }else {
+            reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
+            reference.addValueEventListener( new ValueEventListener(){
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.exists()){
+                        Usuarios u = dataSnapshot.getValue(Usuarios.class);
+                        username.setText(u.getName());
+                        username.setVisibility(View.VISIBLE);
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                }
+                    });
 
-        }
-
-
-
+            }
+        setSingleEvent(maingrid);
     }
+
+
 
     private void setSingleEvent(GridLayout maingrid) {
     for(int i=0; i<maingrid.getChildCount();i++){

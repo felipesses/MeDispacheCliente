@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.megam.medispachecliente.Main4Activity;
 import com.example.megam.medispachecliente.MainActivity;
 import com.example.megam.medispachecliente.R;
 import com.example.megam.medispachecliente.control.Conexao;
@@ -81,7 +82,7 @@ public class login extends AppCompatActivity {
 
                 if(task.isSuccessful()){
                     alert("Conectando ao Servidor, aguarde");
-                    Intent i = new  Intent(getApplicationContext(), MainActivity.class);
+                    Intent i = new  Intent(getApplicationContext(), Main4Activity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);
                     finish();
