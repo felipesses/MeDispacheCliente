@@ -33,7 +33,9 @@
             android:layout_marginTop="41dp"
             android:text="Login do Usuário"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="@font/xilosa_"
+            />
 
         <EditText
             android:id="@+id/loginpass"
@@ -48,7 +50,9 @@
             android:inputType="textPassword"
             android:textColorHint="@color/bk"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="@font/xilosa_"
+            />
 
         <EditText
             android:id="@+id/loginadress"
@@ -63,7 +67,9 @@
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:textColorHint="@color/bk"            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="@font/xilosa_"
+            />
 
         <RelativeLayout
             android:layout_width="281dp"
@@ -72,7 +78,7 @@
             android:layout_centerHorizontal="true">
 
 
-            <Button
+          <!--  <Button
                 android:id="@+id/loginbotao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -84,9 +90,27 @@
                 android:text="Login"
                 android:background="@color/colorPrimaryDark"
                 android:textColor="@color/white"
-                android:textColorLink="@color/green"/>
+                android:textColorLink="@color/green"
+                />-->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/entrar"
+                android:src="@drawable/bot_ent"
+                android:layout_marginTop="28dp"
+                android:layout_marginLeft="15dp"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cad"
+                android:src="@drawable/botcad"
+                android:layout_toRightOf="@id/entrar"
+                android:layout_marginTop="28dp"
+                android:layout_marginLeft="40dp"
+                />
 
-            <Button
+           <!-- <Button
                 android:id="@+id/novocad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -99,7 +123,7 @@
                 android:text="Cadastrar"
                 android:textColor="@color/white"
                 android:textColorLink="@color/green"/>
-            />
+            />-->
         </RelativeLayout>
 
 
