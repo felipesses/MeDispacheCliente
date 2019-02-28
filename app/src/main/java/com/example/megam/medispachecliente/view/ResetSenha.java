@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.megam.medispachecliente.R;
@@ -17,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class ResetSenha extends AppCompatActivity {
 EditText email;
-Button reset;
+ImageView reset;
 FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +69,6 @@ FirebaseAuth auth;
 
     private void inicializarcomponentes() {
         email = findViewById(R.id.cemail);
-        reset = findViewById(R.id.creset);
+        reset = findViewById(R.id.btreset);
     }
 }

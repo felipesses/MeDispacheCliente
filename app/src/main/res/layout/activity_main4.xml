@@ -21,20 +21,29 @@
             android:textColor="#fff"
             android:textStyle="bold"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/xilosa_"
+            android:textSize="15sp"
+            />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/nomeuser"
             android:layout_margin="5dp"
-            android:hint="pesquisar..."
+            android:hint="Quer comer onde?"
             android:id="@+id/search_user"
+            android:textSize="20sp"
+            android:fontFamily="@font/xilosa_"
+            android:textColor="@color/negra"
             />
         <android.support.v7.widget.RecyclerView
             android:layout_below="@id/search_user"
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="20dp">
+            android:layout_height="20dp"
+            >
         </android.support.v7.widget.RecyclerView>
     </RelativeLayout>
 

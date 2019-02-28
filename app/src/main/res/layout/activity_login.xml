@@ -70,61 +70,26 @@
             android:textStyle="bold"
             android:fontFamily="@font/xilosa_"
             />
-
-        <RelativeLayout
-            android:layout_width="281dp"
-            android:layout_height="79dp"
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:id="@+id/Loginbotao"
+            android:src="@drawable/botao_entrar"
+            android:layout_marginTop="30dp"
             android:layout_below="@+id/loginpass"
-            android:layout_centerHorizontal="true">
+            android:layout_alignRight="@id/loginpass"
+            />
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:id="@+id/novocad"
+            android:src="@drawable/botcad"
+            android:layout_below="@+id/loginpass"
+            android:layout_alignLeft="@id/loginpass"
+            android:layout_marginTop="30dp"
+            />
 
 
-          <!--  <Button
-                android:id="@+id/loginbotao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="40dp"
-                android:layout_marginStart="40dp"
-                android:text="Login"
-                android:background="@color/colorPrimaryDark"
-                android:textColor="@color/white"
-                android:textColorLink="@color/green"
-                />-->
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/entrar"
-                android:src="@drawable/bot_ent"
-                android:layout_marginTop="28dp"
-                android:layout_marginLeft="15dp"
-                />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/cad"
-                android:src="@drawable/botcad"
-                android:layout_toRightOf="@id/entrar"
-                android:layout_marginTop="28dp"
-                android:layout_marginLeft="40dp"
-                />
-
-           <!-- <Button
-                android:id="@+id/novocad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginEnd="40dp"
-                android:layout_marginRight="40dp"
-                android:background="@color/colorPrimaryDark"
-                android:text="Cadastrar"
-                android:textColor="@color/white"
-                android:textColorLink="@color/green"/>
-            />-->
-        </RelativeLayout>
 
 
     </RelativeLayout>

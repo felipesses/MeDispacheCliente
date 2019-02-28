@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.Spinner;
 
@@ -29,7 +30,7 @@ public class usercadastro extends AppCompatActivity {
      EditText username, useradress, userpass;
     Spinner cidade;
 
-     Button userbotao, voltar;
+     ImageView userbotao, voltar;
      private FirebaseAuth auth;
   private FirebaseDatabase firebaseDatabase;
   private DatabaseReference databaseReference;
@@ -125,11 +126,11 @@ private void alert(String msg){
 }
 
     private void inicializarcomponentes() {
-        userbotao = findViewById(R.id.userbotao);
+        userbotao = findViewById(R.id.cad_cadastro);
         username = findViewById(R.id.username);
         useradress = findViewById(R.id.useradress);
         userpass = findViewById(R.id.userpass);
-        voltar = findViewById(R.id.voltar);
+        voltar = findViewById(R.id.cad_voltar);
         cidade = findViewById(R.id.cidade);
         ArrayAdapter arrayAdapter = ArrayAdapter.createFromResource(this, R.array.cidades, android.R.layout.simple_spinner_item);
         cidade.setAdapter(arrayAdapter);

@@ -8,11 +8,10 @@
     >
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_width="400dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_height="550dp"
         android:layout_marginTop="27dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="27dp">
@@ -31,45 +30,28 @@
             android:textColor="@color/white"
             android:textSize="18sp" />-->
 
-       <!-- <Button
-            android:id="@+id/userbotao"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/voltar"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:layout_x="193dp"
-            android:layout_y="329dp"
-            android:background="@color/green"
-            android:text="Cadastrar"
-            android:textColor="@color/white"
-            android:textColorLink="@color/white"
-            android:textSize="18sp" />-->
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btcad"
-            android:src="@drawable/botcad"
-            android:layout_marginTop="600dp"
-            android:layout_marginLeft="300dp"
-            />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btvoltar"
-            android:src="@drawable/btn_back"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="600dp"
+        <!-- <Button
+             android:id="@+id/userbotao"
+             android:layout_width="150dp"
+             android:layout_height="wrap_content"
+             android:layout_above="@+id/voltar"
+             android:layout_centerHorizontal="true"
+             android:layout_marginTop="10dp"
+             android:layout_x="193dp"
+             android:layout_y="329dp"
+             android:background="@color/green"
+             android:text="Cadastrar"
+             android:textColor="@color/white"
+             android:textColorLink="@color/white"
+             android:textSize="18sp" />-->
 
-            />
 
         <Spinner
             android:id="@+id/cidade"
-            android:layout_width="300dp"
-            android:layout_height="70dp"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/userpass"
-            android:layout_marginLeft="60dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="268dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="275dp"
             ></Spinner>
 
         <EditText
@@ -146,6 +128,27 @@
             android:textSize="24sp"
             android:textStyle="bold|italic"
             android:fontFamily="@font/xilosa_"/>
+
+
+        <ImageView
+            android:id="@+id/cad_voltar"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/houseAdress"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/btn_back"
+            android:layout_alignRight="@+id/houseAdress"
+            />
+
+        <ImageView
+            android:id="@+id/cad_cadastro"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/houseAdress"
+            android:background="@drawable/botcad"
+            android:layout_marginTop="30dp"
+            android:layout_alignLeft="@+id/houseAdress"
+            />
 
     </RelativeLayout>
 

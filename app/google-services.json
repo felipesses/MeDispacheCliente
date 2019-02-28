@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "735916909807-r0ustpfr50na72brpajed36bn0i16hd4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jelln.medispache",
+            "certificate_hash": "b86cde9590e50d68e587385e9c352fe3fb76ccd8"
+          }
+        },
+        {
           "client_id": "735916909807-deqqq3c4bdmrhfhsvcfba7ccbleq4pqq.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -64,6 +72,50 @@
           "android_info": {
             "package_name": "com.example.jelln.medispachecliente",
             "certificate_hash": "671dce9e51bbbbd3e8080ccc09b64452ee163f86"
+          }
+        },
+        {
+          "client_id": "735916909807-deqqq3c4bdmrhfhsvcfba7ccbleq4pqq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6dEB7JAL2WzqjvGUyy8oyChvdR9bN0wg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "735916909807-deqqq3c4bdmrhfhsvcfba7ccbleq4pqq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:735916909807:android:5f04ef8eca68c918",
+        "android_client_info": {
+          "package_name": "com.example.megam.medispache"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "735916909807-ppk9qqe41v8an3qmq2ao4foi2rk4f8kj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.megam.medispache",
+            "certificate_hash": "d8b46ec795a1b2fae9d4ad482aa91f86e1cd889b"
           }
         },
         {
