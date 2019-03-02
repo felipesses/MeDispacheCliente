@@ -113,6 +113,7 @@ holder.itemView.setOnClickListener(new View.OnClickListener() {
         private ImageView img_off;
         public TextView last_msg;
         public ImageButton mensagem;
+        Usuarios user;
         public ViewHolder(View itemView){
             super(itemView);
             username = itemView.findViewById(R.id.username);
@@ -120,9 +121,9 @@ holder.itemView.setOnClickListener(new View.OnClickListener() {
             img_on = itemView.findViewById(R.id.img_on);
             img_off = itemView.findViewById(R.id.img_off);
             last_msg = itemView.findViewById(R.id.last_msg);
-            mensagem = itemView.findViewById(R.id.mensagem);
+            mensagem = itemView.findViewById(R.id.Mensagem);
 
-                mensagem.setVisibility(View.GONE);// mudar o botao
+                mensagem.setVisibility(View.VISIBLE);// mudar o botao
 
 
         }

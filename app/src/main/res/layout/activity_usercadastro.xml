@@ -61,7 +61,7 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/cidade"
             android:ems="10"
-            android:hint="Rua e Nº"
+            android:hint="Rua, Bairro e Número"
             android:inputType="textPersonName"
             android:textColorHint="@color/bk"
             android:textColorLink="@color/white"

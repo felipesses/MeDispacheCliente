@@ -40,13 +40,25 @@
         android:text="123"
         />
 
+            <CheckBox
+                 android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_toLeftOf="@id/Comprar"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="20dp"
+                android:enabled="true"
+                android:background="@color/yellow"
+
+                />
+
 
     <ImageButton
-        android:id="@+id/comprar"
+        android:id="@+id/Comprar"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:background="@drawable/confirme" />
+        android:background="@drawable/confirme"
+        />
 
 </RelativeLayout>

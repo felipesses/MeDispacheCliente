@@ -27,7 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class usercadastro extends AppCompatActivity {
 
 
-     EditText username, useradress, userpass;
+     EditText username, useradress, userpass, endereco;
     Spinner cidade;
 
      ImageView userbotao, voltar;
@@ -70,10 +70,11 @@ baac();
                 final String email = useradress.getText().toString().trim();
                 final   String senha = userpass.getText().toString().trim();
                 final String cidades = cidade.getSelectedItem().toString();
+                final String enderecos  = endereco.getText().toString().trim();
 
 
-                if(!name.equals("")&&!email.equals("")&&!senha.equals("")&&!cidades.equals("Selecione uma Cidade")){
-                    criarUser(email, senha, name, cidades);
+                if(!name.equals("")&&!email.equals("")&&!senha.equals("")&&!cidades.equals("Selecione uma Cidade")&&!enderecos.equals("")){
+                    criarUser(email, senha, name, cidades, enderecos);
 
                 }else{
                     alert("preencha todos os dados");
@@ -94,7 +95,7 @@ baac();
         finish();
     }
 
-    private void criarUser(final String email, final String senha, final String name,  final  String cidades) {
+    private void criarUser(final String email, final String senha, final String name,  final  String cidades, final  String enderecos) {
         auth.createUserWithEmailAndPassword(email, senha).addOnCompleteListener(usercadastro.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -105,6 +106,7 @@ baac();
                     u.setStatus("offline");
                     u.setSenha(senha);
                     u.setCidade(cidades);
+                    u.setEndereco(enderecos);
                     u.setId(auth.getUid());
                     databaseReference.child("User").child(auth.getUid()).setValue(u);
 
@@ -132,6 +134,7 @@ private void alert(String msg){
         userpass = findViewById(R.id.userpass);
         voltar = findViewById(R.id.cad_voltar);
         cidade = findViewById(R.id.cidade);
+        endereco = findViewById(R.id.houseAdress);
         ArrayAdapter arrayAdapter = ArrayAdapter.createFromResource(this, R.array.cidades, android.R.layout.simple_spinner_item);
         cidade.setAdapter(arrayAdapter);
 

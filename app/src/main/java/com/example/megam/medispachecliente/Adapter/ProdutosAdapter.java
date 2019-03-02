@@ -24,6 +24,7 @@ import com.example.megam.medispachecliente.fragments.APIService;
 import com.example.megam.medispachecliente.model.Produtos;
 import com.example.megam.medispachecliente.model.Usuarios;
 import com.example.megam.medispachecliente.view.Atualizar_Produto;
+import com.example.megam.medispachecliente.view.login;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -77,7 +78,9 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
         holder.botao_mp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(mContext, Atualizar_Produto.class);
+
+                if(user!=null){
+                  /*Intent intent = new Intent(mContext, Atualizar_Produto.class);
                 Bundle bundle = new Bundle();
 
                 bundle.putString("nome", produtos.getNome() );
@@ -86,29 +89,35 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
                 bundle.putString("id", produtos.getId());
                 intent.putExtras(bundle);
                 mContext.startActivity(intent);*/
-                notify = true;
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
-                reference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        Usuarios u = dataSnapshot.getValue(Usuarios.class);
-                        if(notify) {
-                            sendNotification(userid, u.getName(), produtos.getNome());
-                            alert("Pedido concluído");
-                            Intent intent = new Intent(mContext, MainActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            mContext.startActivity(intent);
+                    notify = true;
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
+                    reference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            Usuarios u = dataSnapshot.getValue(Usuarios.class);
+                            if(notify) {
+                                sendNotification(userid, u.getName(), produtos.getNome());
+                                alert("Pedido concluído");
+                                Intent intent = new Intent(mContext, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                mContext.startActivity(intent);
+
+                            }
+                            notify = false;
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
 
                         }
-                        notify = false;
-                    }
+                    });
+                }else{
+                    alert("Por favor, realize seu login");
+                    Intent intent = new Intent(mContext, login.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    mContext.startActivity(intent);
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-
+                }
 
             }
         });
@@ -172,7 +181,7 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
             tipo = itemView.findViewById(R.id.tipo);
             profile_image = itemView.findViewById(R.id.container_img);
             quantidade = itemView.findViewById(R.id.quantidade);
-            botao_mp = itemView.findViewById(R.id.comprar);
+            botao_mp = itemView.findViewById(R.id.Comprar);
 
 
 

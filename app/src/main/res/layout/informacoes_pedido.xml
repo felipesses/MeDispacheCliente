@@ -1,134 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="wrap_content">
+    android:padding="8dp"
+    android:background="@color/negra"
+    >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="560dp">
 
-    <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/container_img"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/ic_launcher_background" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/container_img"
-        android:layout_marginTop="20dp"
-        android:padding="2dp"
-        android:id="@+id/infor"
-        android:textColor="@color/sub"
-        android:maxLines="1"
-        android:textSize="25sp"
-        android:layout_centerHorizontal="true"
-        android:text="Informações do pedido"
-        />
 
-    <TextView
-        android:id="@+id/vpedido"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/infor"
-        android:text="Valor do Pedido: "
-        android:layout_marginTop="20dp"
-        android:textSize="21sp"
-        android:textColor="@color/negra"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/vpedido"
-        android:layout_below="@id/infor"
-        android:id="@+id/value"
-        android:text="123"
-        android:layout_marginTop="20dp"
-        android:textSize="20dp"
-        />
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/vdelivery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/vpedido"
-        android:text="Valor do Delivery: "
-        android:layout_marginTop="20dp"
-        android:textSize="21sp"
-        android:textColor="@color/negra"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/vdelivery"
-        android:layout_below="@id/vpedido"
-        android:id="@+id/valuedelivery"
-        android:text="123"
-        android:layout_marginTop="20dp"
-        android:textSize="20dp"
-        />
-    <TextView
-        android:id="@+id/qtd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/vdelivery"
-        android:text="Quantidade: "
-        android:layout_marginTop="20dp"
-        android:textSize="21sp"
-        android:textColor="@color/negra"
-        />
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/vdelivery"
-        android:layout_toRightOf="@id/qtd"
-        android:textSize="20dp"
-        android:text="Quantidade"
-        android:layout_marginTop="7dp"
-        android:textColor="@color/sub"
-        />
 
-    <TextView
-        android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/qtd"
-        android:text="Tempo de entrega: "
-        android:layout_marginTop="20dp"
-        android:textSize="21sp"
-        android:textColor="@color/negra"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/qtd"
-        android:layout_toRightOf="@id/time"
-        android:textSize="20dp"
-        android:text="Tempo"
-        android:layout_marginTop="20dp"
-        />
-    <TextView
-        android:id="@+id/locus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/time"
-        android:text="AQUI A DESGRAÇA DO LOCAL DE ENTREGA"
-        android:layout_marginTop="20dp"
-        android:textSize="21sp"
-        />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:padding="8dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Detalhes do Pedido"
+                        android:textColor="@color/bae"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-    <Button
+                    <!--<de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profile_image"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="50dp"
+                        android:src="@drawable/ic_launcher_background" /-->
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/locus"
-        android:layout_marginTop="50dp"
-        android:layout_centerHorizontal="true"
-        android:text="Me Dispache"
-        android:textColor="@color/negra"
-        android:textSize="20dp"
+                    <!--   <TextView
+                           android:id="@+id/username"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_below="@+id/profile_image"
+                           android:layout_centerHorizontal="true"
+                           android:layout_marginTop="15dp"
+                           android:text="username"
+                           android:textColor="@color/bae"
+                           android:textSize="18sp"
+                           android:textStyle="bold"
+                           />-->
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
 
-        />
+            <RelativeLayout
+                android:id="@+id/attuser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:background="#fff"
+                android:padding="5dp"
+                android:visibility="gone">
+
+
+                <ImageButton
+                    android:id="@+id/botaoatt"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/send" />
+
+                <ImageButton
+                    android:id="@+id/botaocancela"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="50dp"
+                    android:background="@drawable/deletar" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:background="@color/white">
+                <ScrollView
+                    android:layout_width="366dp"
+                    android:layout_height="match_parent">
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="450dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="false"
+                        android:layout_marginTop="2dp">
+                    </android.support.v7.widget.RecyclerView>
+                </ScrollView>
+                <!--aqui é a lista dos pedidos-->
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="180dp"
+                android:background="@color/white"
+                >
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="AQUI RECEBE AS DESGRAÇA DAS INFORMACOES EXTRAS DO PEDIDO"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="270dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="2dp"
+                    android:text="Forma de pagamento: "
+                    android:textColor="@color/negra"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/preco_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="30dp"
+                    android:text="Valor Total: "
+                    android:textColor="@color/negra"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Troco para: "
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="55dp"
+                    android:textColor="@color/negra"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="127dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="400dp">
+                <Button
+                    android:id="@+id/mensagem"
+                    android:layout_width="391dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@color/bae"
+                    android:text="Endereço atual"
+                    android:textColor="@color/yellow"
+                    android:textColorLink="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="380dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Endereço"/>
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+
 
 
 </RelativeLayout>
