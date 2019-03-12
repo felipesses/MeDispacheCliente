@@ -6,6 +6,7 @@
     android:padding="8dp"
     android:background="@color/negra"
     >
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="560dp">
@@ -24,8 +25,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:padding="8dp"
-                    >
+                    android:padding="8dp">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -94,17 +95,18 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="40dp"
                 android:background="@color/white">
+
                 <ScrollView
                     android:layout_width="366dp"
                     android:layout_height="match_parent">
+
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/recycler_view"
                         android:layout_width="match_parent"
                         android:layout_height="450dp"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentBottom="false"
-                        android:layout_marginTop="2dp">
-                    </android.support.v7.widget.RecyclerView>
+                        android:layout_marginTop="2dp"></android.support.v7.widget.RecyclerView>
                 </ScrollView>
                 <!--aqui é a lista dos pedidos-->
             </RelativeLayout>
@@ -116,13 +118,12 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="180dp"
-                android:background="@color/white"
-                >
+                android:background="@color/white">
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="AQUI RECEBE AS DESGRAÇA DAS INFORMACOES EXTRAS DO PEDIDO"
-                    />
+                    android:hint="AQUI RECEBE AS DESGRAÇA DAS INFORMACOES EXTRAS DO PEDIDO" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -135,6 +136,7 @@
                 android:background="@color/white">
 
                 <TextView
+                    android:id="@+id/formadepagamento"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -143,6 +145,22 @@
                     android:textColor="@color/negra"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
+
+                <RadioButton
+                    android:id="@+id/R_dinheiro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/formadepagamento"
+                    android:text="Dinheiro" />
+
+                <RadioButton
+                    android:id="@+id/R_cartao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_toRightOf="@id/R_dinheiro"
+                    android:text="Cartão" />
 
                 <TextView
                     android:id="@+id/preco_total"
@@ -154,16 +172,32 @@
                     android:textColor="@color/negra"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
                 <TextView
+                    android:id="@+id/opreco"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Troco para: "
+                    android:layout_alignBaseline="@id/preco_total"
+                    android:layout_toRightOf="@id/preco_total"
+                    android:text="aqui o valor" />
+
+                <TextView
+                    android:id="@+id/troco"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="55dp"
+                    android:text="Troco para: "
                     android:textColor="@color/negra"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@id/troco"
+                    android:layout_toRightOf="@id/troco"
+                    android:hint="Digite o Valor" />
             </RelativeLayout>
 
 
@@ -174,6 +208,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="400dp">
+
                 <Button
                     android:id="@+id/mensagem"
                     android:layout_width="391dp"
@@ -200,7 +235,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Endereço"/>
+                    android:text="Endereço" />
             </RelativeLayout>
         </RelativeLayout>
     </ScrollView>

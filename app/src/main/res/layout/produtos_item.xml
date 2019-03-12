@@ -41,14 +41,19 @@
         />
 
             <CheckBox
-                 android:layout_width="30dp"
+                android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_toLeftOf="@id/Comprar"
-                android:layout_marginTop="25dp"
+                android:layout_alignBaseline="@id/quantidade"
                 android:layout_marginRight="20dp"
                 android:enabled="true"
-                android:background="@color/yellow"
-
+                android:backgroundTint="@color/bae"
+                android:buttonTint="@color/bae"
+                android:foregroundTint="@color/bae"
+                android:drawableTint="@color/bae"
+                android:textSize="25dp"
+                android:scaleX="1.80"
+                android:scaleY="1.80"
                 />
 
 

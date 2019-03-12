@@ -2,7 +2,6 @@ package com.example.megam.medispachecliente.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.megam.medispachecliente.MainActivity;
 import com.example.megam.medispachecliente.Notifications.Client;
 import com.example.megam.medispachecliente.Notifications.Data;
 import com.example.megam.medispachecliente.Notifications.MyResponse;
@@ -22,9 +20,7 @@ import com.example.megam.medispachecliente.Notifications.Token;
 import com.example.megam.medispachecliente.R;
 import com.example.megam.medispachecliente.fragments.APIService;
 import com.example.megam.medispachecliente.model.Produtos;
-import com.example.megam.medispachecliente.model.Usuarios;
-import com.example.megam.medispachecliente.view.Atualizar_Produto;
-import com.example.megam.medispachecliente.view.login;
+import com.example.megam.medispachecliente.view.Tela_Pedido;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -77,10 +73,17 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
 
         holder.botao_mp.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { // isso aqui faz o pedido funcionar mongolóide
 
-                if(user!=null){
-                  /*Intent intent = new Intent(mContext, Atualizar_Produto.class);
+                //aqui é uma gambiarra só pra testar o botao e enviar pro fragment
+                Intent intent = new Intent(mContext, Tela_Pedido.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                mContext.startActivity(intent);
+
+
+                /*if(user!=null){
+
+                  *//*Intent intent = new Intent(mContext, Atualizar_Produto.class);
                 Bundle bundle = new Bundle();
 
                 bundle.putString("nome", produtos.getNome() );
@@ -88,8 +91,8 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
                 bundle.putString("valor", produtos.getValor() );
                 bundle.putString("id", produtos.getId());
                 intent.putExtras(bundle);
-                mContext.startActivity(intent);*/
-                    notify = true;
+                mContext.startActivity(intent);*//*
+                   notify = true;
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
                     reference.addValueEventListener(new ValueEventListener() {
                         @Override
@@ -117,7 +120,7 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     mContext.startActivity(intent);
 
-                }
+                }*/
 
             }
         });
@@ -182,8 +185,6 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
             profile_image = itemView.findViewById(R.id.container_img);
             quantidade = itemView.findViewById(R.id.quantidade);
             botao_mp = itemView.findViewById(R.id.Comprar);
-
-
 
         }
 

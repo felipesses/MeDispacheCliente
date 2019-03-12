@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             }else{
-              reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
+              reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid()); //aqui que abre os estabelecimentos por tipo
    // eventoclick();
         reference.addValueEventListener( new ValueEventListener() {
             @Override
@@ -222,7 +222,7 @@ profilie_image.setOnClickListener(new View.OnClickListener() {
         finish();
     }
 
-    class ViewPageAdapter extends FragmentStatePagerAdapter {
+    public class ViewPageAdapter extends FragmentStatePagerAdapter {
         private ArrayList<Fragment> fragments;
         private ArrayList<String> titles;
 

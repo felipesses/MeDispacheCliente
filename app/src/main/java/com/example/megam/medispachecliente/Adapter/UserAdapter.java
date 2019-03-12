@@ -113,6 +113,9 @@ holder.itemView.setOnClickListener(new View.OnClickListener() {
         private ImageView img_off;
         public TextView last_msg;
         public ImageButton mensagem;
+        public TextView tempoentrega;
+        public TextView valorentrega;
+        public TextView estadoestabelecimento;
         Usuarios user;
         public ViewHolder(View itemView){
             super(itemView);
@@ -122,6 +125,9 @@ holder.itemView.setOnClickListener(new View.OnClickListener() {
             img_off = itemView.findViewById(R.id.img_off);
             last_msg = itemView.findViewById(R.id.last_msg);
             mensagem = itemView.findViewById(R.id.Mensagem);
+            tempoentrega = itemView.findViewById(R.id.tempoE);
+            valorentrega = itemView.findViewById(R.id.ValorE);
+            estadoestabelecimento = itemView.findViewById(R.id.aberto);
 
                 mensagem.setVisibility(View.VISIBLE);// mudar o botao
 

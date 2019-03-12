@@ -57,13 +57,10 @@
     android:layout_marginTop="-5dp"
     android:padding="1dp"
     android:id="@+id/last_msg"
-    android:textColor="@color/sub"
+    android:textColor="@color/negra"
     android:layout_marginLeft="20dp"
     android:maxLines="1"
     android:textSize="18sp"
-
-
-
     />
 
     <ImageButton
@@ -73,4 +70,35 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:background="@drawable/message" />
+
+    <TextView
+        android:id="@+id/tempoE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/last_msg"
+        android:text="Tempo de Entrega"
+        android:layout_toRightOf="@id/profile_image"
+        android:layout_marginLeft="20dp"
+        android:textSize="18sp"
+        />
+    <TextView
+        android:id="@+id/ValorE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tempoE"
+        android:layout_toRightOf="@id/profile_image"
+        android:text="Valor da Entrega"
+        android:layout_marginLeft="20dp"
+        android:textSize="18sp"
+        />
+    <TextView
+        android:id="@+id/aberto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ValorE"
+        android:layout_marginLeft="20dp"
+        android:textSize="18sp"
+        android:layout_toRightOf="@id/profile_image"
+        android:text="Estabelecimento Aberto/Fechado"
+        />
 </RelativeLayout>

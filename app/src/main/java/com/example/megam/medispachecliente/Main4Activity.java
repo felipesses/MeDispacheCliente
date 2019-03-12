@@ -72,7 +72,7 @@ public class Main4Activity extends AppCompatActivity {
 
 
 
-    private void setSingleEvent(GridLayout maingrid) {
+    private void setSingleEvent(GridLayout maingrid) { // a ideia aqui é abrir os estabelecimentos por tipo
     for(int i=0; i<maingrid.getChildCount();i++){
         LinearLayout linearLayout = (LinearLayout)maingrid.getChildAt(i);
         final int finalI = i;
@@ -86,6 +86,16 @@ public class Main4Activity extends AppCompatActivity {
                     startActivity(i);
                     finish();
                 }else if(finalI==1){
+                    Intent i = new  Intent(getApplicationContext(), Splash.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(i);
+                    finish();
+                }else if(finalI==2){
+                    Intent i = new  Intent(getApplicationContext(), Splash.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(i);
+                    finish();
+                }else if(finalI==3){
                     Intent i = new  Intent(getApplicationContext(), Splash.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);

@@ -22,6 +22,8 @@
         <activity
             android:name=".view.ResetSenha"
             android:screenOrientation="portrait" />
+        <activity android:name=".view.Tela_Pedido"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.usercadastro"
             android:screenOrientation="portrait" />
