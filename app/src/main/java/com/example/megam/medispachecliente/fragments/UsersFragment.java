@@ -106,7 +106,7 @@ public class UsersFragment extends Fragment {
 
     private void searchUsers(String s) {
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Query query = FirebaseDatabase.getInstance().getReference("UserEmpresa").orderByChild("search")
+        Query query = FirebaseDatabase.getInstance().getReference("Empresas").child("lanchonete").orderByChild("search")
                 .startAt(s)
                 .endAt(s+"\uf8ff");
                 query.addValueEventListener(new ValueEventListener() {

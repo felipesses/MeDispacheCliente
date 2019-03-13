@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             }else{
-              reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid()); //aqui que abre os estabelecimentos por tipo
+              reference = FirebaseDatabase.getInstance().getReference("Empresas").child(user.getUid()).child("lanchonete"); //aqui que abre os estabelecimentos por tipo
    // eventoclick();
         reference.addValueEventListener( new ValueEventListener() {
             @Override
