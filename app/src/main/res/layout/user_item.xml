@@ -61,6 +61,7 @@
     android:layout_marginLeft="20dp"
     android:maxLines="1"
     android:textSize="18sp"
+    android:textStyle="bold"
     />
 
     <ImageButton

@@ -53,8 +53,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-final Usuarios user = mUsers.get(position);
-holder.username.setText(user.getName());
+        final Usuarios user = mUsers.get(position);
+        holder.username.setText(user.getName());
+
         if (user.getImageUrl() == null) {
             holder.profile_image.setImageResource(R.drawable.ic_launcher_background);
         } else {
@@ -130,8 +131,6 @@ holder.itemView.setOnClickListener(new View.OnClickListener() {
             estadoestabelecimento = itemView.findViewById(R.id.aberto);
 
                 mensagem.setVisibility(View.VISIBLE);// mudar o botao
-
-
         }
 
     }

@@ -11,19 +11,22 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_margin="5dp"
-      android:hint="Quer comer o que?"
+      android:hint="Quer comer onde?"
       android:padding="16dp"
       android:fontFamily="@font/xilosa_"
       android:textSize="22sp"
       android:textColor="@color/negra"
-      android:id="@+id/search_user"/>
+      android:id="@+id/search_user"
+      android:textAlignment="center">
+  </EditText>
 
   <android.support.v7.widget.RecyclerView
       android:layout_below="@id/search_user"
       android:id="@+id/recycler_view"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:background="@color/white"></android.support.v7.widget.RecyclerView>
+      android:background="@color/white">
+  </android.support.v7.widget.RecyclerView>
 
 
 

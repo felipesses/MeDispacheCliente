@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.megam.medispachecliente.MainActivity;
 import com.example.megam.medispachecliente.Notifications.Client;
 import com.example.megam.medispachecliente.Notifications.Data;
 import com.example.megam.medispachecliente.Notifications.MyResponse;
@@ -20,7 +21,9 @@ import com.example.megam.medispachecliente.Notifications.Token;
 import com.example.megam.medispachecliente.R;
 import com.example.megam.medispachecliente.fragments.APIService;
 import com.example.megam.medispachecliente.model.Produtos;
+import com.example.megam.medispachecliente.model.Usuarios;
 import com.example.megam.medispachecliente.view.Tela_Pedido;
+import com.example.megam.medispachecliente.view.login;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -83,7 +86,7 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
 
                 /*if(user!=null){
 
-                  *//*Intent intent = new Intent(mContext, Atualizar_Produto.class);
+                 *//* Intent intent = new Intent(mContext, Atualizar_Produto.class);
                 Bundle bundle = new Bundle();
 
                 bundle.putString("nome", produtos.getNome() );
@@ -104,7 +107,6 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
                                 Intent intent = new Intent(mContext, MainActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 mContext.startActivity(intent);
-
                             }
                             notify = false;
                         }
@@ -124,8 +126,6 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
 
             }
         });
-
-
 
 
 

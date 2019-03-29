@@ -49,10 +49,13 @@
         <Spinner
             android:id="@+id/cidade"
             android:layout_centerHorizontal="true"
-            android:layout_width="268dp"
-            android:layout_height="60dp"
+            android:layout_width="240dp"
+            android:layout_height="50dp"
             android:layout_marginTop="275dp"
-            ></Spinner>
+            android:padding="2dp"
+            android:background="@drawable/background_spinner"
+            >
+        </Spinner>
 
         <EditText
             android:id="@+id/houseAdress"

@@ -137,7 +137,8 @@ public class UsersFragment extends Fragment {
     private void readUsers() {
         FirebaseAuth firebaseAuth = Conexao.getFirebaseAuth();
         final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("UserEmpresa");
+        //comentário dessa maluquice aqui
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("UserEmpresa"); // nao ta passando a imagem de Users empresa para empresa no firebase
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

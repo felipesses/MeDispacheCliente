@@ -241,12 +241,12 @@
     </string-array>
 
     <string-array name="cidades">
-    <item>Selecione uma Cidade</item>
-    <item>Amelia Rodrigues</item>
-    <item>Santo Amaro</item>
-    <item>São Francisco do Conde</item>
-    <item>Cachoeira</item>
-    <item>Maragogipe</item>
+        <item>Selecione uma Cidade</item>
+        <item>Amelia Rodrigues</item>
+        <item>Santo Amaro</item>
+        <item>São Francisco do Conde</item>
+        <item>Cachoeira</item>
+        <item>Maragogipe</item>
     </string-array>
 
 

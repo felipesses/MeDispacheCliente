@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/bg"
+    android:background="@drawable/iconecelular"
     android:weightSum="8"
     tools:context=".MainActivity">
 
@@ -14,106 +13,105 @@
         android:layout_weight="2"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <TextView
             android:id="@+id/nomeuser"
             android:text="nomeuser"
             android:textColor="#fff"
-            android:textStyle="bold"
+            android:textStyle="normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginStart="20dp"
             android:fontFamily="@font/xilosa_"
-            android:textSize="15sp"
-            />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/nomeuser"
-            android:layout_margin="5dp"
-            android:hint="Quer comer onde?"
-            android:id="@+id/search_user"
-            android:textSize="20sp"
-            android:fontFamily="@font/xilosa_"
-            android:textColor="@color/negra"
-            />
-        <android.support.v7.widget.RecyclerView
-            android:layout_below="@id/search_user"
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            >
-        </android.support.v7.widget.RecyclerView>
-    </RelativeLayout>
+            android:textSize="15sp">
+        </TextView>
+
 
 
     <GridLayout
         android:id="@+id/maingrid"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="350dp"
+        android:layout_height="400dp"
         android:layout_weight="5"
         android:alignmentMode="alignMargins"
         android:columnCount="2"
         android:columnOrderPreserved="false"
         android:padding="14dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
         android:rowCount="4">
 
-        <!--row 1-->
+    <!--row 1-->
 
-        <!--column 1-->
+    <!--column 1-->
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:layout_margin="50dp"
-            android:orientation="vertical">
-
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            >
+            <RelativeLayout
+                android:layout_width="120dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="30dp"
+                android:orientation="vertical">
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/dep" />
-
+                android:id="@+id/bebidas"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/dep">
+            </ImageView>
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Depósitos"
+                android:layout_width="100dp"
+                android:layout_height="18dp"
+                android:layout_alignBottom="@+id/bebidas"
+                android:layout_centerHorizontal="true"
                 android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
+                android:text="DEPÓSITOS"
+                android:textColor="@color/white"
+                android:textStyle="normal"
+                android:layout_marginBottom="-20dp"
+                android:fontFamily="@font/xilosa_"
+                android:textSize="20sp"
+                >
+            </TextView>
+        </RelativeLayout>
 
 
         <!--column 2-->
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:layout_margin="16dp"
+        <RelativeLayout
+            android:layout_width="120dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="180dp"
             android:orientation="vertical">
-
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:id="@+id/restaurante"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:src="@drawable/rest" />
-
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Restaurantes"
+                android:layout_width="140dp"
+                android:layout_height="18dp"
+                android:layout_alignBottom="@+id/restaurante"
+                android:layout_centerHorizontal="true"
                 android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
+                android:text="RESTAURANTE"
+                android:textColor="@color/white"
+                android:textStyle="normal"
+                android:layout_marginBottom="-20dp"
+                android:fontFamily="@font/xilosa_"
+                android:textSize="20sp"
+                >
+            </TextView>
+        </RelativeLayout>
 
 
         <!--row 2-->
@@ -121,59 +119,101 @@
         <!--column 1-->
 
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:layout_margin="16dp"
+        <RelativeLayout
+
+            android:layout_width="120dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="230dp"
+            android:layout_marginLeft="30dp"
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:id="@+id/agua"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:src="@drawable/agas" />
-
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Água e Gás"
+                android:layout_width="100dp"
+                android:layout_height="18dp"
+                android:layout_alignBottom="@+id/agua"
+                android:layout_centerHorizontal="true"
                 android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:text="ÁGUA E GÁS"
+                android:textColor="@color/white"
+                android:textStyle="normal"
+                android:layout_marginBottom="-20dp"
+                android:fontFamily="@font/xilosa_"
+                android:textSize="20sp"
+                ></TextView>
 
-        </LinearLayout>
+        </RelativeLayout>
 
 
         <!--column 2-->
 
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:layout_margin="16dp"
+        <RelativeLayout
+            android:layout_width="120dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="230dp"
+            android:layout_marginLeft="180dp"
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/lanch" />
+                android:id="@+id/lanchonete"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/lanc" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lanches"
+                android:layout_width="110dp"
+                android:layout_height="18dp"
+                android:layout_alignBottom="@+id/lanchonete"
+                android:layout_centerHorizontal="true"
                 android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:text="LANCHONETE"
+                android:textColor="@color/white"
+                android:textStyle="normal"
+                android:layout_marginBottom="-20dp"
+                android:fontFamily="@font/xilosa_"
+                android:textSize="20sp"
+                >
+            </TextView>
+        </RelativeLayout>
 
-        </LinearLayout>
-
-
+    </RelativeLayout>
     </GridLayout>
+    </RelativeLayout>
 
-</LinearLayout>
+  <!--  <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:id="@+id/search"
+        android:layout_marginTop="30dp">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:hint="Quer comer onde?"
+            android:id="@+id/search_user"
+            android:textSize="20sp"
+            android:fontFamily="@font/xilosa_"
+            android:textColorHint="@color/white"
+            android:textAlignment="center">
+        </EditText>
+        <android.support.v7.widget.RecyclerView
+            android:layout_below="@id/search_user"
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            >
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+-->
+</RelativeLayout>

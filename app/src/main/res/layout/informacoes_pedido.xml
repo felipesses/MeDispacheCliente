@@ -4,101 +4,56 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="8dp"
-    android:background="@color/negra"
+    android:background="@color/gray"
     >
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="560dp">
+        android:layout_height="match_parent"
+        android:background="@color/gray">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/gray">
 
-
-            <android.support.v7.widget.CardView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:background="@color/white"
+                android:id="@+id/detalhes_pedido">
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
                     android:background="@color/white"
-                    android:padding="8dp">
-
+                    >
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:fontFamily="@font/xilosa_"
                         android:text="Detalhes do Pedido"
-                        android:textColor="@color/bae"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <!--<de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/profile_image"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="50dp"
-                        android:src="@drawable/ic_launcher_background" /-->
-
-                    <!--   <TextView
-                           android:id="@+id/username"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_below="@+id/profile_image"
-                           android:layout_centerHorizontal="true"
-                           android:layout_marginTop="15dp"
-                           android:text="username"
-                           android:textColor="@color/bae"
-                           android:textSize="18sp"
-                           android:textStyle="bold"
-                           />-->
+                        android:textColor="@color/negra"
+                        android:textSize="25sp"
+                        android:textStyle="normal"
+                        android:layout_centerInParent="true"/>
                 </RelativeLayout>
-            </android.support.v7.widget.CardView>
-
-            <RelativeLayout
-                android:id="@+id/attuser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentBottom="true"
-                android:background="#fff"
-                android:padding="5dp"
-                android:visibility="gone">
-
-
-                <ImageButton
-                    android:id="@+id/botaoatt"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:background="@drawable/send" />
-
-                <ImageButton
-                    android:id="@+id/botaocancela"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="50dp"
-                    android:background="@drawable/deletar" />
             </RelativeLayout>
 
-
             <RelativeLayout
+                android:id="@+id/lista_pedidos"
                 android:layout_width="match_parent"
-                android:layout_height="135dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="40dp"
-                android:background="@color/white">
-
+                android:layout_height="180dp"
+                android:background="@color/white"
+                android:layout_below="@id/detalhes_pedido"
+                android:layout_marginTop="5dp">
                 <ScrollView
+                    android:id="@+id/lista_pedido_1"
                     android:layout_width="366dp"
-                    android:layout_height="match_parent">
+                    android:layout_height="160dp"
+                    android:layout_centerInParent="true">
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/recycler_view"
@@ -106,140 +61,165 @@
                         android:layout_height="450dp"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentBottom="false"
-                        android:layout_marginTop="2dp"></android.support.v7.widget.RecyclerView>
+                        android:layout_marginTop="2dp">
+                    </android.support.v7.widget.RecyclerView>
                 </ScrollView>
-                <!--aqui é a lista dos pedidos-->
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/extras_detalhes"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="180dp"
+                android:layout_below="@id/os_pagamentos"
+                android:layout_marginTop="5dp"
                 android:background="@color/white">
-
                 <EditText
+                    android:id="@+id/ExtrasPedido"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="AQUI RECEBE AS DESGRAÇA DAS INFORMACOES EXTRAS DO PEDIDO" />
+                    android:hint="Informe aqui detalhes extras do pedido"
+                    android:textColor="@color/negra"
+                    android:fontFamily="@font/xilosa_"
+                    android:textSize="22dp"
+                    android:textColorHint="@color/negra"
+                    >
+                </EditText>
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/os_pagamentos"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="270dp"
-                android:background="@color/white">
-
+                android:layout_height="120dp"
+                android:layout_below="@id/lista_pedidos"
+                android:background="@color/white"
+                android:layout_marginTop="5dp">
                 <TextView
                     android:id="@+id/formadepagamento"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="10dp"
                     android:text="Forma de pagamento: "
                     android:textColor="@color/negra"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/xilosa_"
+                    />
                 <RadioButton
                     android:id="@+id/R_dinheiro"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/formadepagamento"
-                    android:text="Dinheiro" />
-
+                    android:text="Dinheiro"
+                    android:fontFamily="@font/xilosa_"
+                    android:textColor="@color/negra"
+                    android:textSize="18sp"
+                    android:layout_alignBaseline="@id/formadepagamento">
+                </RadioButton>
                 <RadioButton
                     android:id="@+id/R_cartao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_toRightOf="@id/R_dinheiro"
-                    android:text="Cartão" />
-
+                    android:text="Cartão"
+                    android:fontFamily="@font/xilosa_"
+                    android:textColor="@color/negra"
+                    android:textSize="18sp"
+                    android:layout_alignBaseline="@id/formadepagamento">
+                </RadioButton>
                 <TextView
                     android:id="@+id/preco_total"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="40dp"
                     android:text="Valor Total: "
                     android:textColor="@color/negra"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/xilosa_"/>
                 <TextView
                     android:id="@+id/opreco"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBaseline="@id/preco_total"
                     android:layout_toRightOf="@id/preco_total"
-                    android:text="aqui o valor" />
+                    android:text="aqui o valor"
+                    android:fontFamily="@font/xilosa_"
+                    android:textSize="20sp">
+                </TextView>
 
                 <TextView
                     android:id="@+id/troco"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="55dp"
+                    android:layout_marginTop="75dp"
                     android:text="Troco para: "
                     android:textColor="@color/negra"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/xilosa_"/>
 
                 <EditText
+                    android:id="@+id/edit_troco"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBaseline="@id/troco"
                     android:layout_toRightOf="@id/troco"
-                    android:hint="Digite o Valor" />
+                    android:hint="Digite o Valor"
+                    android:fontFamily="@font/xilosa_"/>
             </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/pegar_endereco"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_below="@id/extras_detalhes"
+                android:layout_marginTop="5dp"
+                android:background="@color/white">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Endereço">
+                </TextView>
+            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="127dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="400dp">
-
+                android:layout_height="80dp"
+                android:layout_below="@id/pegar_endereco"
+                android:layout_marginTop="5dp"
+                android:background="@color/white">
                 <Button
-                    android:id="@+id/mensagem"
-                    android:layout_width="391dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
+                    android:id="@+id/endereco_atual"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="60dp"
                     android:background="@color/bae"
                     android:text="Endereço atual"
                     android:textColor="@color/yellow"
                     android:textColorLink="@color/white"
                     android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_marginTop="5dp">
+                </Button>
+                <Button
+                    android:id="@+id/endereco_padrao"
+                    android:layout_width="120dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="220dp"
+                    android:background="@color/bae"
+                    android:text="Endereço Cadastrado"
+                    android:textColor="@color/yellow"
+                    android:textColorLink="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="5dp">
+                </Button>
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="90dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="380dp"
-                android:background="@color/white">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Endereço" />
-            </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
-
-
-
 </RelativeLayout>

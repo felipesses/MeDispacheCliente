@@ -12,6 +12,9 @@ public class Usuarios {
     private String search;
     private String cidade;
     private String endereco;
+    private String tempoentrega;
+    private String valorentrega;
+
 
 
     public String getEndereco() {
@@ -97,4 +100,19 @@ public class Usuarios {
     }
 
 
+    public String getTempoentrega() {
+        return tempoentrega;
+    }
+
+    public void setTempoentrega(String tempoentrega) {
+        this.tempoentrega = tempoentrega;
+    }
+
+    public String getValorentrega() {
+        return valorentrega;
+    }
+
+    public void setValorentrega(String valorentrega) {
+        this.valorentrega = valorentrega;
+    }
 }
