@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity  {
             ViewPager viewPager = findViewById(R.id.view_pager);
             ViewPageAdapter viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager());
             username.setVisibility(View.GONE);
-            viewPageAdapter.addFragment(new UsersFragment(), "Empresas");
+            viewPageAdapter.addFragment(new UsersFragment(), "Estabelecimentos");
             // viewPageAdapter.addFragment(new PedidosFragment(), "Pedidos");
             viewPager.setAdapter(viewPageAdapter);
             tabLayout.setupWithViewPager(viewPager);
@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity  {
             final TabLayout tabLayout = findViewById(R.id.tab_layout);
             ViewPager viewPager = findViewById(R.id.view_pager);
             ViewPageAdapter viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager());
-            viewPageAdapter.addFragment(new UsersFragment(), "Empresas");
+            viewPageAdapter.addFragment(new UsersFragment(), "Estabelecimentos");
             viewPageAdapter.addFragment(new PedidosFragment(), "Pedidos");
 
             viewPager.setAdapter(viewPageAdapter);
@@ -191,10 +191,10 @@ public class MainActivity extends AppCompatActivity  {
                             }
                         }
                         if(unread == 0){
-                            tabLayout.getTabAt(0).setText("Empresas");
+                            tabLayout.getTabAt(0).setText("Estabelecimentos");
 
                         }else{
-                            tabLayout.getTabAt(0).setText("("+unread+") Empresas");
+                            tabLayout.getTabAt(0).setText("("+unread+") Estabelecimentos");
                         }
 
                     }}

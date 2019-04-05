@@ -82,6 +82,8 @@ if(ischat){
     holder.img_off.setVisibility(View.VISIBLE);
 }
 
+
+
 holder.itemView.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
@@ -99,6 +101,7 @@ holder.itemView.setOnClickListener(new View.OnClickListener() {
                 mContext.startActivity(intent);
             }
         });
+
     }
 
     @Override
@@ -130,7 +133,16 @@ holder.itemView.setOnClickListener(new View.OnClickListener() {
             valorentrega = itemView.findViewById(R.id.ValorE);
             estadoestabelecimento = itemView.findViewById(R.id.aberto);
 
+            final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+            if(user==null){
+                mensagem.setVisibility(View.GONE);
+            }else{
                 mensagem.setVisibility(View.VISIBLE);// mudar o botao
+            }
+
+
+
         }
 
     }
@@ -169,5 +181,7 @@ theLastMessage = "default";
 
         }
     });
-}
+ }
+
+
 }

@@ -78,15 +78,8 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
             @Override
             public void onClick(View v) { // isso aqui faz o pedido funcionar mongolóide
 
-                //aqui é uma gambiarra só pra testar o botao e enviar pro fragment
-                Intent intent = new Intent(mContext, Tela_Pedido.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                mContext.startActivity(intent);
-
-
-                /*if(user!=null){
-
-                 *//* Intent intent = new Intent(mContext, Atualizar_Produto.class);
+                if(user!=null){
+                 /* Intent intent = new Intent(mContext, Atualizar_Produto.class);
                 Bundle bundle = new Bundle();
 
                 bundle.putString("nome", produtos.getNome() );
@@ -94,8 +87,17 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
                 bundle.putString("valor", produtos.getValor() );
                 bundle.putString("id", produtos.getId());
                 intent.putExtras(bundle);
-                mContext.startActivity(intent);*//*
+                mContext.startActivity(intent);*/
+
+
+                    //aqui é uma gambiarra só pra testar o botao e enviar pro fragment
+                    Intent intent = new Intent(mContext, Tela_Pedido.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    mContext.startActivity(intent);
+
                    notify = true;
+
+
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
                     reference.addValueEventListener(new ValueEventListener() {
                         @Override
@@ -122,7 +124,7 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     mContext.startActivity(intent);
 
-                }*/
+                }
 
             }
         });

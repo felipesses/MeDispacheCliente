@@ -8,16 +8,19 @@
 
 
   <EditText
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
+      android:layout_width="300dp"
+      android:layout_height="55dp"
       android:layout_margin="5dp"
       android:hint="Quer comer onde?"
+      android:textColorLink="@color/gray"
       android:padding="16dp"
       android:fontFamily="@font/xilosa_"
       android:textSize="22sp"
       android:textColor="@color/negra"
       android:id="@+id/search_user"
-      android:textAlignment="center">
+      android:textAlignment="center"
+      android:layout_centerHorizontal="true"
+      android:textColorHighlight="@color/gray">
   </EditText>
 
   <android.support.v7.widget.RecyclerView

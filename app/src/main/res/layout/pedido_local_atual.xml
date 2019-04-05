@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="400dp"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_centerInParent="true"
     android:layout_centerVertical="true"
@@ -15,7 +15,7 @@
 
     <RelativeLayout
         android:id="@+id/mapslocation"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="350dp"
         android:background="@color/white"
         >
@@ -28,18 +28,18 @@
     </RelativeLayout>
 
      <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="350dp"
             android:layout_below="@id/mapslocation"
             android:layout_marginTop="20dp">
                 <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="350dp"
                     app:cardBackgroundColor="@color/white">
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="28dp"
-                            android:background="@color/white"
+                            android:background="@drawable/background_relative_layout"
                             android:layout_marginTop="10dp"
                             android:id="@+id/bar_top">
                             <TextView
@@ -56,7 +56,8 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:layout_marginTop="50dp">
+                        android:layout_marginTop="50dp"
+                        android:background="@drawable/background_relative_layout">
                             <EditText
                                 android:id="@+id/endereco_pessoa_agora"
                                 android:layout_width="match_parent"
@@ -65,7 +66,7 @@
                                 android:fontFamily="@font/xilosa_"
                                 android:textSize="20sp"
                                 android:textColor="@color/negra"
-                                android:backgroundTint="@color/green"
+                                android:backgroundTint="@color/negra"
                                 android:shadowColor="@color/green">
                             </EditText>
                     </RelativeLayout>

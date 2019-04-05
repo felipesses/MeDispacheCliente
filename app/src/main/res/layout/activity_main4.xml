@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/iconecelular"
+    android:background="@drawable/bequigraund"
     android:weightSum="8"
     tools:context=".MainActivity">
 
@@ -63,7 +63,7 @@
                 android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/dep">
+                android:src="@drawable/bottle">
             </ImageView>
             <TextView
                 android:layout_width="100dp"

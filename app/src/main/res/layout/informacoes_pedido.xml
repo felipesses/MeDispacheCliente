@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="8dp"
     android:background="@color/gray"
+    android:layout_centerInParent="true"
+    android:gravity="center"
     >
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/gray">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/gray"
+        android:layout_centerInParent="true">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/gray">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:gravity="center"
+            >
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_centerHorizontal="true"
-                android:background="@color/white"
+               android:gravity="center"
+                android:background="@drawable/backgroun_empresas"
                 android:id="@+id/detalhes_pedido">
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:padding="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
                     android:background="@color/white"
+                    android:gravity="center"
                     >
                     <TextView
                         android:layout_width="wrap_content"
@@ -46,14 +51,16 @@
                 android:id="@+id/lista_pedidos"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
-                android:background="@color/white"
+                android:background="@drawable/background_relative_layout"
                 android:layout_below="@id/detalhes_pedido"
-                android:layout_marginTop="5dp">
+                android:layout_marginTop="5dp"
+                android:gravity="center">
                 <ScrollView
                     android:id="@+id/lista_pedido_1"
-                    android:layout_width="366dp"
+                    android:layout_width="match_parent"
                     android:layout_height="160dp"
-                    android:layout_centerInParent="true">
+                    android:layout_centerInParent="true"
+                    android:foregroundGravity="center">
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/recycler_view"
@@ -72,7 +79,8 @@
                 android:layout_height="80dp"
                 android:layout_below="@id/os_pagamentos"
                 android:layout_marginTop="5dp"
-                android:background="@color/white">
+                android:background="@drawable/background_relative_layout"
+                >
                 <EditText
                     android:id="@+id/ExtrasPedido"
                     android:layout_width="match_parent"
@@ -81,7 +89,7 @@
                     android:textColor="@color/negra"
                     android:fontFamily="@font/xilosa_"
                     android:textSize="22dp"
-                    android:textColorHint="@color/negra"
+                    android:textColorLink="@color/negra"
                     >
                 </EditText>
             </RelativeLayout>
@@ -91,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:layout_below="@id/lista_pedidos"
-                android:background="@color/white"
+                android:background="@drawable/background_relative_layout"
                 android:layout_marginTop="5dp">
                 <TextView
                     android:id="@+id/formadepagamento"
@@ -113,19 +121,19 @@
                     android:text="Dinheiro"
                     android:fontFamily="@font/xilosa_"
                     android:textColor="@color/negra"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:layout_alignBaseline="@id/formadepagamento">
                 </RadioButton>
                 <RadioButton
                     android:id="@+id/R_cartao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@id/R_dinheiro"
                     android:text="Cartão"
                     android:fontFamily="@font/xilosa_"
                     android:textColor="@color/negra"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:layout_alignBaseline="@id/formadepagamento">
                 </RadioButton>
                 <TextView
@@ -178,7 +186,7 @@
                 android:layout_height="90dp"
                 android:layout_below="@id/extras_detalhes"
                 android:layout_marginTop="5dp"
-                android:background="@color/white">
+                android:background="@drawable/background_relative_layout">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -188,10 +196,10 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="70dp"
                 android:layout_below="@id/pegar_endereco"
                 android:layout_marginTop="5dp"
-                android:background="@color/white">
+                android:background="@drawable/background_relative_layout">
                 <Button
                     android:id="@+id/endereco_atual"
                     android:layout_width="100dp"
@@ -209,7 +217,8 @@
                     android:id="@+id/endereco_padrao"
                     android:layout_width="120dp"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="220dp"
+                    android:layout_toRightOf="@id/endereco_atual"
+                    android:layout_marginLeft="25dp"
                     android:background="@color/bae"
                     android:text="Endereço Cadastrado"
                     android:textColor="@color/yellow"

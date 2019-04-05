@@ -15,14 +15,15 @@
         android:text="Faça seu pedido"
         android:textAlignment="center"
         android:textSize="28sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:fontFamily="@font/xilosa_"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="498dp"
         android:layout_alignParentBottom="true"
-        android:layout_below="@id/pedido"
+        android:layout_below="@+id/pedido"
         android:layout_marginTop="16dp"></android.support.v7.widget.RecyclerView>
 
 
