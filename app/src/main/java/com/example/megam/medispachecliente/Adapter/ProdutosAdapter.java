@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.megam.medispachecliente.Main3Activity;
 import com.example.megam.medispachecliente.MainActivity;
 import com.example.megam.medispachecliente.Notifications.Client;
 import com.example.megam.medispachecliente.Notifications.Data;
@@ -22,6 +23,7 @@ import com.example.megam.medispachecliente.R;
 import com.example.megam.medispachecliente.fragments.APIService;
 import com.example.megam.medispachecliente.model.Produtos;
 import com.example.megam.medispachecliente.model.Usuarios;
+import com.example.megam.medispachecliente.view.Pedido_local_atual;
 import com.example.megam.medispachecliente.view.Tela_Pedido;
 import com.example.megam.medispachecliente.view.login;
 import com.google.firebase.auth.FirebaseAuth;
@@ -91,11 +93,11 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
 
 
                     //aqui é uma gambiarra só pra testar o botao e enviar pro fragment
-                    Intent intent = new Intent(mContext, Tela_Pedido.class);
+                    Intent intent = new Intent(mContext, Tela_Pedido.class); // mudar isso aqui para tela_pedido
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     mContext.startActivity(intent);
 
-                   notify = true;
+                 /* notify = true;
 
 
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
@@ -112,20 +114,16 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
                             }
                             notify = false;
                         }
-
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
-
                         }
                     });
-                }else{
+                */}else{
                     alert("Por favor, realize seu login");
                     Intent intent = new Intent(mContext, login.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     mContext.startActivity(intent);
-
                 }
-
             }
         });
 

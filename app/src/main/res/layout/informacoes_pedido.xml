@@ -188,9 +188,16 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/background_relative_layout">
                 <TextView
+                    android:id="@+id/text_endereco"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Endereço">
+                    android:text="Endereço"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/xilosa_"
+                    android:textSize="20sp"
+                    android:textColor="@color/negra"
+                    android:padding="5dp"
+                    >
                 </TextView>
             </RelativeLayout>
 

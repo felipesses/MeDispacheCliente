@@ -57,7 +57,6 @@ public class UsersFragment extends Fragment {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i1, int i2, int after) {
                     searchUsers(charSequence.toString().toLowerCase());
-
                 }
 
                 @Override
@@ -68,7 +67,6 @@ public class UsersFragment extends Fragment {
                 @Override
                 public void afterTextChanged(Editable s) {
                     searchUsers(s.toString().toLowerCase());
-
                 }
             });
         }else{
@@ -76,7 +74,6 @@ public class UsersFragment extends Fragment {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i1, int i2, int after) {
                     searchUsers(charSequence.toString().toLowerCase());
-
                 }
 
                 @Override
@@ -87,7 +84,6 @@ public class UsersFragment extends Fragment {
                 @Override
                 public void afterTextChanged(Editable s) {
                     searchUsers(s.toString().toLowerCase());
-
                 }
             });
             updateToken(FirebaseInstanceId.getInstance().getToken());
@@ -123,8 +119,6 @@ public class UsersFragment extends Fragment {
                         }
                         userAdapter = new UserAdapter(getContext(), mUsers, true);
                         recyclerView.setAdapter(userAdapter);
-
-
                     }
 
                     @Override

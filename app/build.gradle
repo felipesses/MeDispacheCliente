@@ -4,6 +4,9 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.example.megam.medispache"
+        manifestPlaceholders = [
+                onesignal_app_id: '845daabe-0e79-468e-bf20-46819f186a42',
+                onesignal_google_project_number: '735916909807']
         minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
@@ -37,14 +40,16 @@ dependencies {
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
-    implementation 'com.google.android.gms:play-services-maps:15.0.1'
-    implementation 'com.google.android.gms:play-services-places:15.0.1'
-    implementation 'com.google.android.gms:play-services-location:15.0.1'
+    implementation 'com.google.android.gms:play-services-maps:16.1.0'
+    implementation 'com.google.android.gms:play-services-places:16.0.0'
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
     implementation 'com.google.android.gms:play-services-location:16.0.0'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.google.firebase:firebase-messaging:17.3.1'
     implementation 'com.github.rtoshiro.mflibrary:mflibrary:1.0.0'
     implementation 'com.aldoapps:autoformatedittext:0.9.3'
+    implementation 'com.onesignal:OneSignal:3.10.7'
+    implementation 'com.google.android.gms:play-services-gcm:16.1.0'
 }
 apply plugin: 'com.google.gms.google-services'

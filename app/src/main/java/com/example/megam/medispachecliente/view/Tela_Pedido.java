@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ import com.example.megam.medispachecliente.Main4Activity;
 import com.example.megam.medispachecliente.MainActivity;
 import com.example.megam.medispachecliente.Notifications.Token;
 import com.example.megam.medispachecliente.R;
+import com.example.megam.medispachecliente.control.Conexao;
 import com.example.megam.medispachecliente.model.Chatlist;
 import com.example.megam.medispachecliente.model.Usuarios;
 import com.google.android.gms.tasks.Continuation;
@@ -60,18 +62,42 @@ import static android.app.Activity.RESULT_OK;
 
 public class Tela_Pedido extends AppCompatActivity {
 
+    FirebaseUser user;
+    FirebaseAuth auth;
+    DatabaseReference reference;
     EditText valor_troco, extras_pedido;
     RadioButton dinheiro, cartao;
-    TextView formas_pagamento, valor_total, troco_para, valor_total_compras;
+    TextView formas_pagamento, valor_total, troco_para, valor_total_compras, mostrar_endereco;
     Button end_cadastrado, end_atual;
+    RecyclerView lista_produtos;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.informacoes_pedido);
-
+        auth = Conexao.getFirebaseAuth();
+        user = auth.getCurrentUser();
         inicializarcomponentes();
         eventoBotao();
+        atual_button();
+
+        reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
+        reference.addValueEventListener( new ValueEventListener(){
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    Usuarios u = dataSnapshot.getValue(Usuarios.class);
+                    mostrar_endereco.setText("Endereço: "+u.getEndereco()+", "+u.getCidade());
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
+
+
+
 
     @SuppressLint("WrongViewCast")
     private void inicializarcomponentes(){
@@ -86,29 +112,37 @@ public class Tela_Pedido extends AppCompatActivity {
         valor_total = findViewById(R.id.preco_total);
         troco_para = findViewById(R.id.troco);
         valor_total_compras = findViewById(R.id.opreco);
+        lista_produtos = findViewById(R.id.recycler_view);
+        mostrar_endereco = findViewById(R.id.text_endereco);
     }
 
 
     private void eventoBotao(){
-        end_atual.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                    Intent i = new  Intent(getApplicationContext(), Pedido_local_atual.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(i);
-                    finish();
-            }
-        });
-
         end_cadastrado.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                alert("Seu pedido chegará em breve");
                 Intent i = new  Intent(getApplicationContext(), MainActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 finish();
             }
         });
+    }
 
+    private void atual_button(){
+        end_atual.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent i = new  Intent(getApplicationContext(), Pedido_local_atual.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+                finish();
+            }
+        });
+    }
+
+    private void alert(String msg) {
+        Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
     }
 }

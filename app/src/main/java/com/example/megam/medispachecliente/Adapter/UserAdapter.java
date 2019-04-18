@@ -34,6 +34,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     private List<Usuarios> mUsers;
     private boolean ischat;
     String theLastMessage;
+    DatabaseReference reference;
+    FirebaseUser user;
+    FirebaseAuth auth;
     public UserAdapter(Context mContext, List<Usuarios> mUsers, boolean ischat){
 
         this.mUsers = mUsers;
@@ -49,6 +52,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         View view = LayoutInflater.from(mContext).inflate(R.layout.user_item, parent, false);
 
         return new ViewHolder(view);
+
     }
 
     @Override
@@ -138,10 +142,8 @@ holder.itemView.setOnClickListener(new View.OnClickListener() {
             if(user==null){
                 mensagem.setVisibility(View.GONE);
             }else{
-                mensagem.setVisibility(View.VISIBLE);// mudar o botao
+                mensagem.setVisibility(View.VISIBLE);
             }
-
-
 
         }
 

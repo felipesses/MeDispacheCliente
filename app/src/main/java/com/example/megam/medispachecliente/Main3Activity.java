@@ -44,8 +44,8 @@ public class Main3Activity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         cadastro = findViewById(R.id.cadastrar);
         mProdutos = new ArrayList<>();
-
         readUsers();
+
     }
     private void readUsers() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("ProdutosEmpresa").child(userid);
