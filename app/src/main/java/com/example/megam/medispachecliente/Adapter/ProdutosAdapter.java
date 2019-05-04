@@ -2,16 +2,19 @@ package com.example.megam.medispachecliente.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.megam.medispachecliente.Main3Activity;
 import com.example.megam.medispachecliente.MainActivity;
 import com.example.megam.medispachecliente.Notifications.Client;
@@ -35,6 +38,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -48,6 +52,8 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
     APIService apiService;
     boolean notify =false;
     String userid;
+    private final List<String> pedidos = new ArrayList<>();
+
     public ProdutosAdapter(Context mContext, List<Produtos> mProdutos, String userid){
 
         this.mProdutos = mProdutos;
@@ -65,39 +71,48 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
         user = FirebaseAuth.getInstance().getCurrentUser();
         View view = LayoutInflater.from(mContext).inflate(R.layout.produtos_item, parent, false);
         return new ViewHolder(view);
-
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final Produtos produtos = mProdutos.get(position);
         holder.tipo.setText(produtos.getNome().toLowerCase());
         holder.quantidade.setText("R$: "+produtos.getValor().toLowerCase());
-        holder.profile_image.setImageResource(R.drawable.ic_launcher_background);
+
+        if (produtos.getImageUrl() == null) {
+            holder.profile_image.setImageResource(R.drawable.ic_launcher_background);
+        } else {
+            Glide.with(mContext).load(produtos.getImageUrl()).into(holder.profile_image);
+        }
 
 
-        holder.botao_mp.setOnClickListener(new View.OnClickListener() {
+       holder.checkBox.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               if (holder.checkBox.isChecked()){
+                   alert("checado");
+                   pedidos.add("valores");
+               }else{
+               alert("nao checado");
+               }
+           }
+       });
+        /*holder.botao_mp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { // isso aqui faz o pedido funcionar mongolóide
 
                 if(user!=null){
-                 /* Intent intent = new Intent(mContext, Atualizar_Produto.class);
-                Bundle bundle = new Bundle();
-
-                bundle.putString("nome", produtos.getNome() );
-                bundle.putString("quantidade",produtos.getQuantidade() );
-                bundle.putString("valor", produtos.getValor() );
-                bundle.putString("id", produtos.getId());
-                intent.putExtras(bundle);
-                mContext.startActivity(intent);*/
-
-
-                    //aqui é uma gambiarra só pra testar o botao e enviar pro fragment
-                    Intent intent = new Intent(mContext, Tela_Pedido.class); // mudar isso aqui para tela_pedido
+                    Intent intent = new Intent(mContext, Tela_Pedido.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("id", produtos.getId());
+                    intent.putExtras(bundle);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     mContext.startActivity(intent);
 
-                 /* notify = true;
+
+                    //aqui é uma gambiarra só pra testar o botao e enviar pra view
+                    // mudar isso aqui para tela_pedido
+                  *//*notify = true;
 
 
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
@@ -117,15 +132,15 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
                         }
-                    });
-                */}else{
+                    });*//*
+                }else{
                     alert("Por favor, realize seu login");
                     Intent intent = new Intent(mContext, login.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     mContext.startActivity(intent);
                 }
             }
-        });
+        });*/
 
 
 
@@ -152,7 +167,6 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
                                 public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
                                     if(response.code() == 200){
                                         if(response.body().success!=1){
-
                                         }
                                     }
                                 }
@@ -162,7 +176,6 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
 
                                 }
                             });
-
                 }
             }
 
@@ -178,20 +191,20 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
         public  TextView quantidade;
         public TextView tipo;
         public ImageView profile_image;
-        public ImageButton botao_mp;
+        //public ImageButton botao_mp;
+        public CheckBox checkBox;
         public ViewHolder(View itemView){
             super(itemView);
+            checkBox = itemView.findViewById(R.id.checkbox);
             tipo = itemView.findViewById(R.id.tipo);
             profile_image = itemView.findViewById(R.id.container_img);
             quantidade = itemView.findViewById(R.id.quantidade);
-            botao_mp = itemView.findViewById(R.id.Comprar);
-
+            //botao_mp = itemView.findViewById(R.id.Comprar);
         }
-
     }
 
     public void   alert(String msg){
         Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
-
     }
+
 }

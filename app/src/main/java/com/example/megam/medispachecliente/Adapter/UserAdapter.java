@@ -59,6 +59,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Usuarios user = mUsers.get(position);
         holder.username.setText(user.getName());
+        holder.tempoentrega.setText(user.getTempoentrega());
 
         if (user.getImageUrl() == null) {
             holder.profile_image.setImageResource(R.drawable.ic_launcher_background);
@@ -125,6 +126,7 @@ holder.itemView.setOnClickListener(new View.OnClickListener() {
         public TextView valorentrega;
         public TextView estadoestabelecimento;
         Usuarios user;
+
         public ViewHolder(View itemView){
             super(itemView);
             username = itemView.findViewById(R.id.username);

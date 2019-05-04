@@ -43,11 +43,12 @@
         />
 
             <CheckBox
+                android:id="@+id/checkbox"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_toLeftOf="@id/Comprar"
+                android:layout_toRightOf="@id/tipo"
                 android:layout_alignBaseline="@id/quantidade"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="80dp"
                 android:enabled="true"
                 android:backgroundTint="@color/bae"
                 android:buttonTint="@color/bae"
@@ -56,16 +57,17 @@
                 android:textSize="25dp"
                 android:scaleX="1.5"
                 android:scaleY="1.5"
+                android:checked="false"
                 />
 
 
-    <ImageButton
+   <!-- <ImageButton
         android:id="@+id/Comprar"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:background="@drawable/confirme"
-        />
+        />-->
 
 </RelativeLayout>

@@ -14,6 +14,7 @@ import com.example.megam.medispachecliente.control.Conexao;
 import com.example.megam.medispachecliente.fragments.APIService;
 import com.example.megam.medispachecliente.model.Produtos;
 import com.example.megam.medispachecliente.view.Cadastrar_Produto;
+import com.example.megam.medispachecliente.view.Tela_Pedido;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -27,6 +28,7 @@ import java.util.List;
 
 public class Main3Activity extends AppCompatActivity {
     private RecyclerView recyclerView;
+    ImageButton comprar;
     private ProdutosAdapter produtosAdapter;
     private List<Produtos> mProdutos;
     ImageButton cadastro;
@@ -40,13 +42,32 @@ public class Main3Activity extends AppCompatActivity {
         userid = intent.getStringExtra("userID");
         setContentView(R.layout.activity_main3);
         recyclerView = findViewById(R.id.recycler_view);
+        comprar = findViewById(R.id.btn_comprar);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         cadastro = findViewById(R.id.cadastrar);
         mProdutos = new ArrayList<>();
         readUsers();
 
+    comprar.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) { // BOTÃO PARA FAZER O PEDIDO, MAS NAO TA ENVIANDO PARA A EMPRESA, É SÓ TESTE
+            //SE TA PASSANDO OS PRODUTOS PARA A OUTRA TELA
+
+            Intent i = new  Intent(getApplicationContext(), Tela_Pedido.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
+            finish();
+        }
+    });
+
     }
+
+
+
+
+
+
     private void readUsers() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("ProdutosEmpresa").child(userid);
         reference.addValueEventListener(new ValueEventListener() {

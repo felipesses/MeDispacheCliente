@@ -21,10 +21,20 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="498dp"
+        android:layout_height="482dp"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/pedido"
-        android:layout_marginTop="16dp"></android.support.v7.widget.RecyclerView>
+        android:layout_marginBottom="100dp">
+    </android.support.v7.widget.RecyclerView>
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_below="@id/recycler_view"
+        android:layout_marginTop="-80dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/btn_comprar"
+        />
 
 
 
