@@ -12,10 +12,24 @@ public class Usuarios {
     private String search;
     private String cidade;
     private String endereco;
-    private String tempoentrega;
-    private String valorentrega;
+    private String tempo;
+    private String valor;
 
+    public String getTempo() {
+        return tempo;
+    }
 
+    public void setTempo(String tempo) {
+        this.tempo = tempo;
+    }
+
+    public String getValor() {
+        return valor;
+    }
+
+    public void setValor(String valor) {
+        this.valor = valor;
+    }
 
     public String getEndereco() {
         return endereco;
@@ -90,29 +104,17 @@ public class Usuarios {
         Status = status;
     }
 
+
     @Override
     public String toString() {
         return "Usuarios{" +
                 "name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", senha='" + senha + '\'' +
+                ",tempo='" +tempo+'\''+
                 '}';
     }
 
 
-    public String getTempoentrega() {
-        return tempoentrega;
-    }
 
-    public void setTempoentrega(String tempoentrega) {
-        this.tempoentrega = tempoentrega;
-    }
-
-    public String getValorentrega() {
-        return valorentrega;
-    }
-
-    public void setValorentrega(String valorentrega) {
-        this.valorentrega = valorentrega;
-    }
 }

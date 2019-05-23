@@ -1,21 +1,13 @@
 package com.example.megam.medispachecliente;
 
-import android.Manifest;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -31,9 +23,6 @@ import com.example.megam.medispachecliente.fragments.UsersFragment;
 import com.example.megam.medispachecliente.model.Chat;
 import com.example.megam.medispachecliente.model.Usuarios;
 import com.example.megam.medispachecliente.view.login;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -143,6 +132,7 @@ public class MainActivity extends AppCompatActivity  {
 
                 }
             });
+
             final TabLayout tabLayout = findViewById(R.id.tab_layout);
             ViewPager viewPager = findViewById(R.id.view_pager);
             ViewPageAdapter viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager());
@@ -194,8 +184,8 @@ public class MainActivity extends AppCompatActivity  {
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
         finish();
-
     }
+
     private void deslogars2() {
         Toast.makeText(getApplicationContext(), "Esta conta não é de uma empresa", Toast.LENGTH_LONG);
         Conexao.logOut();
@@ -203,10 +193,7 @@ public class MainActivity extends AppCompatActivity  {
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
         finish();
-
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -264,6 +251,7 @@ public class MainActivity extends AppCompatActivity  {
             return titles.get(position);
         }
     }
+
     public void status(String status){
         if(u!=null){
             reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());

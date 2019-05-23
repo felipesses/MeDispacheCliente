@@ -42,6 +42,7 @@
         android:fontFamily="@font/xilosa_"
         />
 
+<!--
             <CheckBox
                 android:id="@+id/checkbox"
                 android:layout_width="30dp"
@@ -59,9 +60,10 @@
                 android:scaleY="1.5"
                 android:checked="false"
                 />
+-->
 
 
-   <!-- <ImageButton
+ <!--   <ImageButton
         android:id="@+id/Comprar"
         android:layout_width="35dp"
         android:layout_height="35dp"

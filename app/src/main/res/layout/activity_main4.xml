@@ -13,21 +13,34 @@
         android:layout_weight="2"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/nomeuser"
-            android:text="nomeuser"
-            android:textColor="#fff"
-            android:textStyle="normal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="20dp"
-            android:fontFamily="@font/xilosa_"
-            android:textSize="15sp">
-        </TextView>
-
-
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bem Vindo"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/xilosa_"
+        android:textSize="18sp"
+        android:textColor="#fff"
+        android:textStyle="normal"
+        />
+    <TextView
+        android:id="@+id/nomeuser"
+        android:text="nomeuser"
+        android:textColor="#fff"
+        android:textStyle="normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="5dp"
+        android:fontFamily="@font/xilosa_"
+        android:textSize="18sp">
+    </TextView>
+</LinearLayout>
     <GridLayout
         android:id="@+id/maingrid"
         android:layout_width="350dp"
@@ -120,7 +133,6 @@
 
 
         <RelativeLayout
-
             android:layout_width="120dp"
             android:layout_height="140dp"
             android:layout_marginTop="230dp"
@@ -146,7 +158,8 @@
                 android:layout_marginBottom="-20dp"
                 android:fontFamily="@font/xilosa_"
                 android:textSize="20sp"
-                ></TextView>
+                >
+            </TextView>
 
         </RelativeLayout>
 
@@ -184,36 +197,7 @@
                 >
             </TextView>
         </RelativeLayout>
-
     </RelativeLayout>
     </GridLayout>
     </RelativeLayout>
-
-  <!--  <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:id="@+id/search"
-        android:layout_marginTop="30dp">
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:hint="Quer comer onde?"
-            android:id="@+id/search_user"
-            android:textSize="20sp"
-            android:fontFamily="@font/xilosa_"
-            android:textColorHint="@color/white"
-            android:textAlignment="center">
-        </EditText>
-        <android.support.v7.widget.RecyclerView
-            android:layout_below="@id/search_user"
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            >
-        </android.support.v7.widget.RecyclerView>
-
-    </LinearLayout>
--->
 </RelativeLayout>

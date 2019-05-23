@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.megam.medispachecliente.Adapter.MessageAdapter;
+import com.example.megam.medispachecliente.Main4Activity;
 import com.example.megam.medispachecliente.MainActivity;
 import com.example.megam.medispachecliente.Notifications.Client;
 import com.example.megam.medispachecliente.Notifications.Data;
@@ -71,11 +72,11 @@ public class MessageActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+     /*   toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent( MessageActivity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));            }
-        });
+                startActivity(new Intent( MessageActivity.this, Main4Activity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));            }
+        });*/
 
         apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
         recyclerView = findViewById(R.id.recycler_msg);
@@ -106,6 +107,8 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
 
+        System.out.println("USER.GETUID: "+user.getUid());
+        System.out.println("USERID: "+userid);
 
 
         reference = FirebaseDatabase.getInstance().getReference("UserEmpresa").child(userid);
@@ -254,7 +257,6 @@ public class MessageActivity extends AppCompatActivity {
 
                                 }
                             });
-
                 }
             }
 

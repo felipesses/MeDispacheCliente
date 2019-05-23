@@ -90,8 +90,6 @@ public class UsersFragment extends Fragment {
         }
 
         return view;
-
-
     }
 
     private void updateToken(String token){
@@ -100,11 +98,13 @@ public class UsersFragment extends Fragment {
         reference.child(user.getUid()).setValue(token1);
     }
 
-    private void searchUsers(String s) {
+    private void searchUsers(String s) { // AJEITAR ISSO AQUI PARA A PESSOA FAZER A PESQUISA DELA PELO NOME DO ESTABELECIMENTO
+        s = "santo amaro";
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Query query = FirebaseDatabase.getInstance().getReference("Empresas").child("lanchonete").orderByChild("search")
+        Query query = FirebaseDatabase.getInstance().getReference("Empresas").child("restaurante").orderByChild("search")
                 .startAt(s)
                 .endAt(s+"\uf8ff");
+        System.out.println("TEM UM FUCKINIG S AQUI PRA OLHAR: "+s);
                 query.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -128,8 +128,44 @@ public class UsersFragment extends Fragment {
                 });
                 }
 
-    private void readUsers() {
-        FirebaseAuth firebaseAuth = Conexao.getFirebaseAuth();
+    private void readUsers() { // O OBJETIVO AQUI É PASSAR A LOCALIZAÇÃO ATUAL DA PESSOA NO LUGAR DO TEXTO DA STRING
+        String city = "santo amaro";
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Query query = FirebaseDatabase.getInstance().getReference("Empresas").child("restaurante").orderByChild("search")
+                .startAt(city)
+                .endAt(city+"\uf8ff");
+        System.out.println("TEM UM FUCKINIG city AQUI PRA OLHAR: "+city);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                mUsers.clear();
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Usuarios u = snapshot.getValue(Usuarios.class);
+                    mUsers.add(u);
+                            /*if(!u.getId().equals(user.getUid())){
+                                mUsers.add(u);
+                            }*/
+
+                    System.out.println("ID "+u.getId());
+                    System.out.println("NOME "+u.getName());
+                    System.out.println("TEMPO ENTREGA "+u.getTempo());
+                    System.out.println("CIDADE "+u.getCidade());
+
+                }
+                System.out.println("USUARIO: "+mUsers);
+                userAdapter = new UserAdapter(getContext(), mUsers, true);
+                recyclerView.setAdapter(userAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+        /*FirebaseAuth firebaseAuth = Conexao.getFirebaseAuth();
         final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         //comentário dessa maluquice aqui
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("UserEmpresa"); // nao ta passando a imagem de Users empresa para empresa no firebase
@@ -142,9 +178,9 @@ public class UsersFragment extends Fragment {
                         Usuarios user = snapshot.getValue(Usuarios.class);
                         assert user != null;
                         mUsers.add(user);
-                        /*if (!user.getId().equals(firebaseUser.getUid())) {
+                        *//*if (!user.getId().equals(firebaseUser.getUid())) {
                             mUsers.add(user);
-                        }*/
+                        }*//*
                     }
 
                     userAdapter = new UserAdapter(getContext(), mUsers, true);
@@ -155,7 +191,9 @@ public class UsersFragment extends Fragment {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
     }
+
+
 }

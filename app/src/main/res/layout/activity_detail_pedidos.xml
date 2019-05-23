@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:minHeight="350dp"
+        android:paddingTop="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Produto :"
+                    android:textStyle="bold"
+                    android:id="@+id/nome_produto"
+                    android:layout_marginLeft="8dp"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/text_nome_produto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="nome produto"
+                    android:textSize="18sp"
+                    />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp">
+                <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/number_button"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="18dp"
+                    app:textSize="8sp"
+                    app:textColor="@color/white"
+                    app:backGroundColor="@color/bae"
+                    app:initialNumber="1"
+                    app:finalNumber="20" />
+            </LinearLayout>
+
+
+
+            <TextView
+                android:id="@+id/preco_produto_detalhe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="300.00"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:layout_marginRight="8dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="bottom"
+                android:layout_marginTop="2dp">
+
+                <Button
+                    android:id="@+id/btn_add_carrinho"
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:text="Add to Cart"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/white"/>
+            </RelativeLayout>
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:id="@+id/float_cart_button"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/confirme"
+                />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.widget.RelativeLayout>

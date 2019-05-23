@@ -27,13 +27,13 @@ import com.google.firebase.database.FirebaseDatabase;
 public class usercadastro extends AppCompatActivity {
 
 
-     EditText username, useradress, userpass, endereco;
+    EditText username, useradress, userpass, endereco;
     Spinner cidade;
 
-     ImageView userbotao, voltar;
-     private FirebaseAuth auth;
-  private FirebaseDatabase firebaseDatabase;
-  private DatabaseReference databaseReference;
+    ImageView userbotao, voltar;
+    private FirebaseAuth auth;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
     Usuarios u = new Usuarios();
 
     @Override
@@ -59,7 +59,7 @@ public class usercadastro extends AppCompatActivity {
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-baac();
+                baac();
 
             }
         });
@@ -112,9 +112,9 @@ baac();
 
 
                     alert("Cadastro efetuado com sucesso");
-        Intent i = new Intent(usercadastro.this, login.class);
-        startActivity(i);
-        finish();
+                    Intent i = new Intent(usercadastro.this, login.class);
+                    startActivity(i);
+                    finish();
                 }else{
                     alert("Erro ao cadastrar, verifique sua conexão.");
 
@@ -122,10 +122,10 @@ baac();
             }
         });
     }
-private void alert(String msg){
-    Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
+    private void alert(String msg){
+        Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
 
-}
+    }
 
     private void inicializarcomponentes() {
         userbotao = findViewById(R.id.cad_cadastro);

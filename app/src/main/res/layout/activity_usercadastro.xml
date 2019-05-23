@@ -16,36 +16,6 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="27dp">
 
-        <!--<Button
-            android:id="@+id/voltar"
-            android:layout_width="381dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:layout_x="75dp"
-            android:layout_y="327dp"
-            android:background="@color/green"
-            android:text="voltar"
-            android:textColor="@color/white"
-            android:textSize="18sp" />-->
-
-        <!-- <Button
-             android:id="@+id/userbotao"
-             android:layout_width="150dp"
-             android:layout_height="wrap_content"
-             android:layout_above="@+id/voltar"
-             android:layout_centerHorizontal="true"
-             android:layout_marginTop="10dp"
-             android:layout_x="193dp"
-             android:layout_y="329dp"
-             android:background="@color/green"
-             android:text="Cadastrar"
-             android:textColor="@color/white"
-             android:textColorLink="@color/white"
-             android:textSize="18sp" />-->
-
-
         <Spinner
             android:id="@+id/cidade"
             android:layout_centerHorizontal="true"

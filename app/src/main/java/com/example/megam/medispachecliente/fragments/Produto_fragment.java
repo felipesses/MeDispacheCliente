@@ -50,6 +50,7 @@ public class Produto_fragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         cadastro = view.findViewById(R.id.cadastrar);
         mProdutos = new ArrayList<>();
+
         cadastro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,14 +58,11 @@ public class Produto_fragment extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
+
         readUsers();
-
-
+        recyclerView.setAdapter(produtosAdapter);
         return view;
     }
-
-
-
 
 
     private void readUsers() {

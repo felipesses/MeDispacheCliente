@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.Carrinho_view">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_cart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/cart_total_price" />
+
+    <TextView
+        android:textSize="28sp"
+        android:id="@+id/cart_total_price"
+        android:layout_above="@+id/cart_checkout"
+        android:gravity="end"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="300.00"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button android:layout_above="@+id/cart_back"
+        android:textColor="@color/negra"
+        android:backgroundTint="@color/colorPrimary"
+        android:id="@+id/cart_checkout"
+        android:text="Checkout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:layout_alignParentBottom="true"
+        android:id="@+id/cart_back"
+        android:text="Back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

@@ -6,7 +6,7 @@ public class Produtos {
         private String valor;
         private String quantidade;
         private String id;
-    private String ImageUrl;
+        private String ImageUrl;
 
     public String getImageUrl() {
         return ImageUrl;

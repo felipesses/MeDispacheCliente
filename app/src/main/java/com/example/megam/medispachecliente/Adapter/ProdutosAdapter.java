@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,11 +25,13 @@ import com.example.megam.medispachecliente.Notifications.Sender;
 import com.example.megam.medispachecliente.Notifications.Token;
 import com.example.megam.medispachecliente.R;
 import com.example.megam.medispachecliente.fragments.APIService;
+import com.example.megam.medispachecliente.fragments.ProfileFragment;
 import com.example.megam.medispachecliente.model.Produtos;
 import com.example.megam.medispachecliente.model.Usuarios;
 import com.example.megam.medispachecliente.view.Pedido_local_atual;
 import com.example.megam.medispachecliente.view.Tela_Pedido;
 import com.example.megam.medispachecliente.view.login;
+import com.example.megam.medispachecliente.view.view_detail_pedido;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -52,6 +55,7 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
     APIService apiService;
     boolean notify =false;
     String userid;
+
     private final List<String> pedidos = new ArrayList<>();
 
     public ProdutosAdapter(Context mContext, List<Produtos> mProdutos, String userid){
@@ -62,6 +66,23 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
     }
 
 
+    public static interface OnRecyclerViewItemClickListener {
+        void onItemClick(View view , String data);
+    }
+
+    private OnRecyclerViewItemClickListener mOnItemClickListener = null;
+
+    public void setOnItemClickListener(OnRecyclerViewItemClickListener listener) {
+        this.mOnItemClickListener = listener;
+    }
+    public void onClick(View view) {
+        if (mOnItemClickListener != null) {
+            mOnItemClickListener.onItemClick(view,String.valueOf(view.getTag()));
+        }
+        else{
+            Log.e("CLICK", "ERROR");
+        }
+    }
 
 
     @NonNull
@@ -85,8 +106,26 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
             Glide.with(mContext).load(produtos.getImageUrl()).into(holder.profile_image);
         }
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("STRING USER ID: "+userid);
+                System.out.println("FIREBASEUSER: "+user);
+                Intent intent = new Intent(mContext, view_detail_pedido.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("UId", userid);
+                bundle.putString("id", produtos.getId());
+                bundle.putString("nome", produtos.getNome());
+                bundle.putString("valor", produtos.getValor());
+                intent.putExtras(bundle);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                mContext.startActivity(intent);
 
-       holder.checkBox.setOnClickListener(new View.OnClickListener() {
+            }
+        });
+
+
+       /*holder.checkBox.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
                if (holder.checkBox.isChecked()){
@@ -96,23 +135,23 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
                alert("nao checado");
                }
            }
-       });
+       });*/
         /*holder.botao_mp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { // isso aqui faz o pedido funcionar mongolóide
 
                 if(user!=null){
-                    Intent intent = new Intent(mContext, Tela_Pedido.class);
+                    *//*Intent intent = new Intent(mContext, Tela_Pedido.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("id", produtos.getId());
                     intent.putExtras(bundle);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    mContext.startActivity(intent);
+                    mContext.startActivity(intent);*//*
 
 
                     //aqui é uma gambiarra só pra testar o botao e enviar pra view
                     // mudar isso aqui para tela_pedido
-                  *//*notify = true;
+                  notify = true;
 
 
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
@@ -132,7 +171,7 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
                         }
-                    });*//*
+                    });
                 }else{
                     alert("Por favor, realize seu login");
                     Intent intent = new Intent(mContext, login.class);
@@ -150,6 +189,7 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
     public int getItemCount() {
         return mProdutos.size();
     }
+
     private void sendNotification(String receiver, final String username, final String message){
         DatabaseReference tokens = FirebaseDatabase.getInstance().getReference("Tokens");
         Query query = tokens.orderByKey().equalTo(receiver);
@@ -192,10 +232,10 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
         public TextView tipo;
         public ImageView profile_image;
         //public ImageButton botao_mp;
-        public CheckBox checkBox;
+        //public CheckBox checkBox;
         public ViewHolder(View itemView){
             super(itemView);
-            checkBox = itemView.findViewById(R.id.checkbox);
+            //checkBox = itemView.findViewById(R.id.checkbox);
             tipo = itemView.findViewById(R.id.tipo);
             profile_image = itemView.findViewById(R.id.container_img);
             quantidade = itemView.findViewById(R.id.quantidade);

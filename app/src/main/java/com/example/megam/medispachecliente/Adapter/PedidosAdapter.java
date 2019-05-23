@@ -77,7 +77,7 @@ public class PedidosAdapter extends RecyclerView.Adapter<PedidosAdapter.ViewHold
                         tipo = itemView.findViewById(R.id.tipo);
                         profile_image = itemView.findViewById(R.id.container_img);
                         quantidade = itemView.findViewById(R.id.quantidade);
-                        //botao_mp = itemView.findViewById(R.id.Comprar);
+                       //botao_mp = itemView.findViewById(R.id.Comprar);
                     }
         }
 

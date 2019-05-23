@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.megam.medispachecliente.Common.Common;
 import com.example.megam.medispachecliente.Main4Activity;
 import com.example.megam.medispachecliente.MainActivity;
 import com.example.megam.medispachecliente.R;
@@ -80,9 +81,9 @@ public class login extends AppCompatActivity {
         auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(login.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-
                 if(task.isSuccessful()){
                     alert("Conectando ao Servidor, aguarde");
+                    //Common currentUser = pass; isso aqui é só para armazenar as info do usuário quando ele for logar de novo
                     Intent i = new  Intent(getApplicationContext(), Main4Activity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);

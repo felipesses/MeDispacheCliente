@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.megam.medispachecliente.control.Conexao;
+import com.example.megam.medispachecliente.fragments.UsersFragment;
 import com.example.megam.medispachecliente.model.Usuarios;
 import com.example.megam.medispachecliente.view.Splash;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -38,6 +39,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.text.NumberFormat;
 
 
 public class Main4Activity extends AppCompatActivity {
@@ -52,6 +55,7 @@ public class Main4Activity extends AppCompatActivity {
     DatabaseReference reference;
     ImageView restaurante, agua, lanchonete, bebidas;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -59,17 +63,11 @@ public class Main4Activity extends AppCompatActivity {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         fetchLocation();
 
-
         restaurante = findViewById(R.id.restaurante);
         agua = findViewById(R.id.agua);
         lanchonete = findViewById(R.id.lanchonete);
         bebidas = findViewById(R.id.bebidas);
 
-/*       Toolbar tool = findViewById(R.id.toolbar);
-        setSupportActionBar(tool);
-        getSupportActionBar().setTitle("");*/
-
-        //maingrid = (GridLayout)findViewById(R.id.maingrid);
         username = findViewById(R.id.nomeuser);
         auth = Conexao.getFirebaseAuth();
         user = auth.getCurrentUser();
@@ -97,7 +95,7 @@ public class Main4Activity extends AppCompatActivity {
         restaurante.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new  Intent(getApplicationContext(), MainActivity.class);
+                Intent i = new  Intent(getApplicationContext(), Main5Activity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 finish();
@@ -107,7 +105,7 @@ public class Main4Activity extends AppCompatActivity {
         agua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new  Intent(getApplicationContext(), MapsActivity.class);
+                Intent i = new  Intent(getApplicationContext(), Main7Activity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 finish();
@@ -117,7 +115,7 @@ public class Main4Activity extends AppCompatActivity {
         bebidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new  Intent(getApplicationContext(), Splash.class);
+                Intent i = new  Intent(getApplicationContext(), Main6Activity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 finish();
@@ -127,7 +125,7 @@ public class Main4Activity extends AppCompatActivity {
         lanchonete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new  Intent(getApplicationContext(), Splash.class);
+                Intent i = new  Intent(getApplicationContext(), Main8Activity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 finish();

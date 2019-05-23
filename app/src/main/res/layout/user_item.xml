@@ -15,7 +15,9 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/profile_image"
-            android:src="@drawable/ic_launcher_background"/>
+            android:src="@drawable/ic_launcher_background"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="2dp"/>
 
         <TextView
             android:id="@+id/username"
@@ -24,11 +26,11 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="60dp"
+            android:layout_marginTop="2dp"
             android:text="username"
             android:textSize="22dp"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="60dp"
-            android:textColor="@color/negra"
             android:textStyle="bold"
             android:fontFamily="@font/xilosa_"
             />
@@ -79,7 +81,8 @@
             android:layout_alignParentEnd="true"
             android:layout_below="@id/last_msg"
             android:background="@drawable/message"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"/>
         <RelativeLayout
             android:layout_width="300dp"
             android:layout_height="90dp"
@@ -96,16 +99,34 @@
                 android:layout_marginLeft="20dp"
                 android:textSize="18sp"
                 />
-            <TextView
-                android:id="@+id/ValorE"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_below="@id/tempoE"
-                android:text="Valor da Entrega"
-                android:layout_marginLeft="20dp"
-                android:textSize="18sp"
-                />
-            <TextView
+                android:layout_marginTop="5dp"
+                android:background="@drawable/backgroun_empresas"
+                android:padding="5dp"
+                android:layout_marginLeft="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ENTREGA R$ "
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/negra"/>
+                <TextView
+                    android:id="@+id/ValorE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.00"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/negra"
+                    />
+            </LinearLayout>
+
+            <!--<TextView
                 android:id="@+id/aberto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -113,7 +134,7 @@
                 android:layout_marginLeft="20dp"
                 android:textSize="18sp"
                 android:text="Estabelecimento Aberto/Fechado"
-                />
+                />-->
         </RelativeLayout>
 
     </RelativeLayout>

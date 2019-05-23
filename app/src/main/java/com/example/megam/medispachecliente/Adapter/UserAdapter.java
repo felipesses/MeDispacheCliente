@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.megam.medispachecliente.Carrinho;
 import com.example.megam.medispachecliente.Main3Activity;
 import com.example.megam.medispachecliente.R;
 import com.example.megam.medispachecliente.model.Chat;
@@ -37,12 +38,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     DatabaseReference reference;
     FirebaseUser user;
     FirebaseAuth auth;
+
     public UserAdapter(Context mContext, List<Usuarios> mUsers, boolean ischat){
 
         this.mUsers = mUsers;
         this.mContext = mContext;
         this.ischat=ischat;
-
     }
 
 
@@ -59,7 +60,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Usuarios user = mUsers.get(position);
         holder.username.setText(user.getName());
-        holder.tempoentrega.setText(user.getTempoentrega());
+        holder.tempoentrega.setText(user.getTempo());
+        holder.valorentrega.setText(user.getValor());
+
+
+
+
+        System.out.println("NOME, TEMPO E VALOR DA ENTREGA "+user.getName()+user.getTempo() + user.getValor());
 
         if (user.getImageUrl() == null) {
             holder.profile_image.setImageResource(R.drawable.ic_launcher_background);
@@ -92,10 +99,13 @@ if(ischat){
 holder.itemView.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-
         Intent intent = new Intent(mContext, Main3Activity.class);
         intent.putExtra("userID", user.getId());
         mContext.startActivity(intent);
+        Intent valor = new Intent(mContext, Carrinho.class);
+        valor.putExtra("precoDELIVERI",user.getValor());
+        System.out.println("USER.GETID: "+user.getId());
+        System.out.println("USER.GETID: "+user.getValor());
     }
 });
         holder.mensagem.setOnClickListener(new View.OnClickListener() {
@@ -137,7 +147,7 @@ holder.itemView.setOnClickListener(new View.OnClickListener() {
             mensagem = itemView.findViewById(R.id.Mensagem);
             tempoentrega = itemView.findViewById(R.id.tempoE);
             valorentrega = itemView.findViewById(R.id.ValorE);
-            estadoestabelecimento = itemView.findViewById(R.id.aberto);
+            //estadoestabelecimento = itemView.findViewById(R.id.aberto);
 
             final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
