@@ -62,17 +62,11 @@ public class MapsActivity extends FragmentActivity implements
                 state = addresses.get(0).getAdminArea();
                 country = addresses.get(0).getCountryName();
             }
-
         }
-
         catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
     }
-
 
 
     @Override

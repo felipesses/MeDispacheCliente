@@ -3,27 +3,36 @@ package com.example.megam.medispachecliente.model;
 import java.util.List;
 
 public class Request {
-    //private String nome;
+    private String nome;
     private String endereco;
     private String total;
     private List<Pedidos> OrderPedidos;// lista com os produtos pedidos
     private String status;
     private String valor_entrega;
     private String taxa_entrega;
+    private String forma_pagamento;
 
     public Request() {
 
     }
 
-    public Request(String endereco, String total, String valor_entrega, String taxa_entrega, List<Pedidos> orderPedidos) {
-        //this.nome = nome;
+    public Request(String nome, String endereco, String total, String valor_entrega, String taxa_entrega, String forma_pagamento, List<Pedidos> orderPedidos) {
+        this.nome = nome;
         this.endereco = endereco;
         this.total = total;
         this.valor_entrega = valor_entrega;
         this.taxa_entrega = taxa_entrega;
+        this.forma_pagamento = forma_pagamento;
         OrderPedidos = orderPedidos;
         this.status ="0"; //0: pedido, 1:entregando, 2:entregue
+    }
 
+    public String getForma_pagamento() {
+        return forma_pagamento;
+    }
+
+    public void setForma_pagamento(String forma_pagamento) {
+        this.forma_pagamento = forma_pagamento;
     }
 
     public String getValor_entrega() {
@@ -50,21 +59,13 @@ public class Request {
         this.status = status;
     }
 
-    /*    public String getNome() {
-        return nome;
-    }
+    public String getNome() { return nome; }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }*/
+    public void setNome(String nome) { this.nome = nome; }
 
-    public String getEndereco() {
-        return endereco;
-    }
+    public String getEndereco() { return endereco; }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
+    public void setEndereco(String endereco) { this.endereco = endereco; }
 
     public String getTotal() {
         return total;

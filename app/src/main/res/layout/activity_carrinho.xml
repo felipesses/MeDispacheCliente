@@ -35,9 +35,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total: "
+                    android:text="TOTAL: "
                     android:textSize="18sp"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/couture_bld"/>
                 <TextView
                     android:id="@+id/valor_total"
                     android:layout_width="wrap_content"
@@ -56,10 +57,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pagamento: "
+                    android:text="PAGAMENTO: "
                     android:layout_margin="6dp"
                     android:textSize="18sp"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/couture_bld"/>
 
                 <RadioGroup
                     android:layout_width="match_parent"
@@ -71,14 +73,19 @@
                         android:layout_height="wrap_content"
                         android:text="Dinheiro"
                         android:textColor="@color/white"
-                        android:id="@+id/dinheiro_radio"/>
+                        android:id="@+id/dinheiro_radio"
+                        android:checked="true"
+                        android:fontFamily="@font/couture_bld"
+                        />
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cartão"
+                        android:text="CARTÃO"
                         android:id="@+id/cartao_radio"
                         android:textColor="@color/white"
-                        android:layout_marginLeft="5dp"/>
+                        android:layout_marginLeft="5dp"
+                        android:fontFamily="@font/couture_bld"
+                        />
                 </RadioGroup>
             </LinearLayout>
 
@@ -93,9 +100,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Valor da Entrega: "
+                    android:text="VALOR DA ENTREGA: "
                     android:textSize="18sp"
                     android:textColor="@color/white"
+                    android:fontFamily="@font/couture_bld"
                     />
                 <TextView
                     android:id="@+id/valor_entrega"
@@ -103,7 +111,8 @@
                     android:layout_height="wrap_content"
                     android:text="R$ 0,00"
                     android:textSize="18sp"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/couture_bld"/>
             </LinearLayout>
 
             <LinearLayout
@@ -117,7 +126,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Taxas: "
+                    android:text="TAXAS: "
                     android:textSize="18sp"
                     android:textColor="@color/white"/>
 
@@ -129,18 +138,28 @@
                     android:textSize="18sp"
                     android:textColor="@color/white"
                     />
-
-
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btn_pedir"
-                android:layout_width="150dp"
-                android:layout_height="40dp"
-                android:text="Pedir"
-                android:layout_alignParentBottom="true"
-                android:layout_centerInParent="true"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/button_layout"
+                android:layout_below="@id/valor_layout"
+                android:layout_centerHorizontal="true">
+                <Button
+                    android:id="@+id/btn_pedir"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:text="Pedir"
+                    />
+                <Button
+                    android:id="@+id/att_cart"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:text="Atualizar"/>
 
+            </LinearLayout>
         </RelativeLayout>
         
     </android.support.v7.widget.CardView>

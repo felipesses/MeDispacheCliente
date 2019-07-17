@@ -20,7 +20,7 @@
         android:text="olá"
         android:padding="8dp"
         android:layout_toRightOf="@+id/msgperfil"
-
+        android:fontFamily="@font/couture_bld"
         />
 
     <TextView

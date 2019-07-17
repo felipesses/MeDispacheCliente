@@ -11,26 +11,31 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.megam.medispachecliente.Adapter.CarrinhoAdapter;
+import com.example.megam.medispachecliente.Common.Common;
 import com.example.megam.medispachecliente.Notifications.Client;
 import com.example.megam.medispachecliente.Notifications.Data;
 import com.example.megam.medispachecliente.Notifications.MyResponse;
 import com.example.megam.medispachecliente.Notifications.Sender;
 import com.example.megam.medispachecliente.Notifications.Token;
+import com.example.megam.medispachecliente.control.Conexao;
 import com.example.megam.medispachecliente.fragments.APIService;
 import com.example.megam.medispachecliente.model.Pedidos;
 import com.example.megam.medispachecliente.model.Produtos;
 import com.example.megam.medispachecliente.model.Request;
 import com.example.megam.medispachecliente.model.Usuarios;
 import com.example.megam.medispachecliente.sql.pedido_db;
+import com.example.megam.medispachecliente.view.Confirmado_pedido;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -55,16 +60,21 @@ public class Carrinho extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    String idE;
-    String PRECO_ENTREGA;
+    DatabaseReference database_do_cliente;
+    DatabaseReference database_do_delivery;
+    String idE="";
+    FirebaseUser idUsuario;
     Intent intent;
     boolean notify =false;
     APIService apiService;
     Usuarios usuarios = new Usuarios();
 
     RadioGroup radioGroup;
+    RadioButton radioDinheiro, radioCartao;
     TextView txt_total_preco, txt_valor_entrega, txt_taxa_entrega;
-    Button btn_fazer_pedido;
+    Button btn_fazer_pedido, btn_att_cart;
+    String forma ="";
+    String nomeDocliente ="";
 
     List<Pedidos> carrinho = new ArrayList<>();
     CarrinhoAdapter adapter;
@@ -80,20 +90,11 @@ public class Carrinho extends AppCompatActivity {
         intent = getIntent();
         Bundle bundle = intent.getExtras();
         idE = intent.getStringExtra("EId");
-        PRECO_ENTREGA = intent.getStringExtra("precoDELIVERI");
 
         System.out.println("IIDE: "+idE);
-        System.out.println("USUARIOS EM STRING: "+PRECO_ENTREGA);
         //firebase
-
-        //FirebaseUser userE = FirebaseAuth.getInstance().getCurrentUser();
-        //userE.getUid();
-        //System.out.println("USERE.getuid: AQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"+userE.getUid());
-
-
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("Requests").child(idE); // aqui envia o pedido com o ID da empresa|Passar o do usuario também :) TA FUNCIONANDO ESSA LEBARA
-
+        databaseReference = firebaseDatabase.getReference("Requests").child(idE); // aqui envia o pedido com o ID da empresa
         //init
 
         recyclerView = findViewById(R.id.lista_carrinho);
@@ -106,31 +107,58 @@ public class Carrinho extends AppCompatActivity {
         radioGroup = findViewById(R.id.radio_group);
         txt_total_preco = findViewById(R.id.valor_total);
         btn_fazer_pedido = findViewById(R.id.btn_pedir);
+        btn_att_cart = findViewById(R.id.att_cart);
+        radioDinheiro = findViewById(R.id.dinheiro_radio);
+        radioCartao = findViewById(R.id.cartao_radio);
 
 
         CarregarListaPedidos();
 
-        btn_fazer_pedido.setOnClickListener(new View.OnClickListener() {
+       btn_fazer_pedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showAlertDialog();
             }
         });
 
+       btn_att_cart.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               recreate();
+           }
+       });
     }
 
     private void showAlertDialog() {
-        apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
+        if(idUsuario==null){ // botar isso aqui ali embaixo
+            idUsuario = Conexao.getFirebaseAuth().getCurrentUser();
+            database_do_cliente = firebaseDatabase.getInstance().getReference("User").child(idUsuario.getUid());
+            database_do_cliente.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.exists()){
+                        Usuarios u = dataSnapshot.getValue(Usuarios.class);
+                        nomeDocliente = u.getName();
+                    }
+                }
 
-        AlertDialog.Builder alertDialog  = new AlertDialog.Builder(Carrinho.this);
-        alertDialog.setTitle("Mais um passo!");
-        alertDialog.setMessage("Digite o seu endereço");
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-        final EditText edtAdress = new EditText(Carrinho.this);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT
-        );
+                }
+            });
+
+
+            apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
+            AlertDialog.Builder alertDialog  = new AlertDialog.Builder(Carrinho.this);
+            alertDialog.setTitle("Mais um passo!");
+            alertDialog.setMessage("Digite o seu endereço");
+
+            final EditText edtAdress = new EditText(Carrinho.this);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT
+            );
             edtAdress.setLayoutParams(lp);
             alertDialog.setView(edtAdress); // adiciona um edit txt no dialog
             alertDialog.setIcon(R.drawable.confirme);
@@ -138,24 +166,30 @@ public class Carrinho extends AppCompatActivity {
             alertDialog.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
+                    if (radioCartao.isChecked()){
+                        forma = "Cartão";
+                    }else if(radioDinheiro.isChecked()){
+                        forma = "Dinheiro";
+                    }
                     //Criar novo request
                     Request request = new Request(
-                            //Common.currentUser.getName(),
+                            nomeDocliente,
                             edtAdress.getText().toString(),
                             txt_total_preco.getText().toString(),
                             txt_valor_entrega.getText().toString(),
                             txt_taxa_entrega.getText().toString(),
+                            forma,
                             carrinho
                     );
                     //Submit to firebase
                     databaseReference.child(String.valueOf(System.currentTimeMillis()))
                             .setValue(request);
+                    System.out.println("NOME DO USUARIO: "+ request.getNome());
                     //Delete carrinho
                     new pedido_db(getBaseContext()).limpar_Carrinho();
-                    Toast.makeText(Carrinho.this, "Obrigado pela escolha, seu pedido chegará em breve", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getBaseContext(), Confirmado_pedido.class));
                     finish();
                     //ENVIAR NOTIFICAÇÃO DO PEDIDO
-                    Usuarios u = new Usuarios();
                     Produtos produtos = new Produtos();
                     final String userC;
                     final FirebaseUser userE = FirebaseAuth.getInstance().getCurrentUser();
@@ -163,8 +197,8 @@ public class Carrinho extends AppCompatActivity {
                     notify = true;
 
                     if(notify){
-                        SendNotify(idE, u.getName(), produtos.getNome()); // CORRIGIR A PASSAGEM DO NOME DO USER + NOME DO PRODUTO
-                        System.out.println("ide "+idE+"u.getname"+u.getName()+"produtos.getnome"+produtos.getNome());
+                        SendNotify(idE, usuarios.getName(), produtos.getNome()); // CORRIGIR A PASSAGEM DO NOME DO USER + NOME DO PRODUTO
+                        System.out.println("ide "+idE+"u.getname"+usuarios.getName()+"produtos.getnome"+produtos.getNome());
                     }
                     notify = false;
                 }
@@ -178,8 +212,7 @@ public class Carrinho extends AppCompatActivity {
             });
 
             alertDialog.show();
-
-
+        }
 
     }
 
@@ -199,7 +232,7 @@ public class Carrinho extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         idE = intent.getStringExtra("EId");
 
-        System.out.println("ID da empresa q AQUI "+idE);
+        System.out.println("ID da empresa AQUI "+idE);
 
 
         DatabaseReference tokens = FirebaseDatabase.getInstance().getReference("Tokens");
@@ -236,28 +269,52 @@ public class Carrinho extends AppCompatActivity {
         });
 
     }
-
-
     private void CarregarListaPedidos() { // aqui carrega o valor total do pedido
         carrinho = new pedido_db(this).getCarrinhos();
         adapter = new CarrinhoAdapter(carrinho, this);
+        adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
 
-        //calcular o valor total
-        double total = 0;
-        double armazenaTemp = 0;
-        double percent = 0;
-        double delivery = 0;
-        for (Pedidos pedidos : carrinho) {
-            armazenaTemp = ((Double.parseDouble(pedidos.getPrecoProduto())) * (Integer.parseInt(pedidos.getQuantidadeProduto())));
-            percent += (armazenaTemp * 0.1);
-            total += (((Double.parseDouble(pedidos.getPrecoProduto())) * (Integer.parseInt(pedidos.getQuantidadeProduto()))) + (0.1 * (Double.parseDouble(pedidos.getPrecoProduto())) * (Integer.parseInt(pedidos.getQuantidadeProduto()))) + delivery);
+
+    if (idE!=null){
+     database_do_delivery = firebaseDatabase.getInstance().getReference("UserEmpresa").child(idE);
+     database_do_delivery.addValueEventListener(new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            if (dataSnapshot.exists()){
+                Usuarios u = dataSnapshot.getValue(Usuarios.class);
+                System.out.println("VALOR DO DELIVERY: "+u.getValor());
+                String valorEntregador = u.getValor();
+
+                //calcular o valor total
+                double total = 0;
+                double armazenaTemp = 0;
+                double percent = 0;
+                double delivery = Double.parseDouble(valorEntregador);
+                for (Pedidos pedidos : carrinho) {
+                    armazenaTemp = ((Double.parseDouble(pedidos.getPrecoProduto())) * (Integer.parseInt(pedidos.getQuantidadeProduto())));
+                    percent += (armazenaTemp * 0.1);
+                    total +=
+                    (((Double.parseDouble(pedidos.getPrecoProduto()))*(Integer.parseInt(pedidos.getQuantidadeProduto()))) +
+                    (0.1 * (Double.parseDouble(pedidos.getPrecoProduto()))*(Integer.parseInt(pedidos.getQuantidadeProduto()))));
+                }
+                // TA PASSANDO O VALOR DA ENTREGA VÁRIAS VEZES
+
+                Locale locale = new Locale("pt", "BR");
+                NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
+                txt_total_preco.setText(fmt.format(total+delivery));
+                txt_taxa_entrega.setText(fmt.format(percent));
+                txt_valor_entrega.setText(valorEntregador);
+            }
         }
 
-        Locale locale = new Locale("pt", "BR");
-        NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
-        txt_total_preco.setText(fmt.format(total));
-        txt_taxa_entrega.setText(fmt.format(percent));
-        //txt_valor_entrega.setText(usuarios.getValor());
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+        }
+    });
+    }
+
+
     }
 }

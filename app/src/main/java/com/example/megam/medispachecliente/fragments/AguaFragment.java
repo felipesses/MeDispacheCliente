@@ -36,6 +36,7 @@ public class AguaFragment extends Fragment {
     private List<Usuarios> mUsers;
     EditText search_users;
     FirebaseUser user;
+    String cidadeMesmo ="";
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,9 +48,14 @@ public class AguaFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mUsers = new ArrayList<>();
         user = FirebaseAuth.getInstance().getCurrentUser();
-        readUsers();
         search_users = view.findViewById(R.id.search_user);
-        search_users.setVisibility(view.getVisibility());
+        search_users.setVisibility(View.GONE);
+
+        Bundle bundle = this.getArguments();
+        String strtext = bundle.getString("edttext").toLowerCase();
+        System.out.println("SEI NEM OQ E ISSO"+strtext);
+
+        readUsers(strtext);
 
         if(user==null){
             search_users.addTextChangedListener(new TextWatcher() {
@@ -98,7 +104,7 @@ public class AguaFragment extends Fragment {
 
     private void searchUsers(String s) {
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Query query = FirebaseDatabase.getInstance().getReference("Empresas").child("lanchonete").orderByChild("search")
+        Query query = FirebaseDatabase.getInstance().getReference("Empresas").child("agua").orderByChild("name")
                 .startAt(s)
                 .endAt(s+"\uf8ff");
         query.addValueEventListener(new ValueEventListener() {
@@ -120,10 +126,46 @@ public class AguaFragment extends Fragment {
         });
     }
 
-    private void readUsers() {
-        FirebaseAuth firebaseAuth = Conexao.getFirebaseAuth();
+    private void readUsers(String cidadezinha) { // O OBJETIVO AQUI É PASSAR A LOCALIZAÇÃO ATUAL DA PESSOA NO LUGAR DO TEXTO DA STRING
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Query query = FirebaseDatabase.getInstance().getReference("Empresas").child("agua").orderByChild("search")
+                .startAt(cidadezinha)
+                .endAt(cidadezinha+"\uf8ff");
+        System.out.println("TEM UM FUCKINIG city AQUI PRA OLHAR: "+cidadezinha);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                mUsers.clear();
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Usuarios u = snapshot.getValue(Usuarios.class);
+                    mUsers.add(u);
+                            /*if(!u.getId().equals(user.getUid())){
+                                mUsers.add(u);
+                            }*/
+
+                    System.out.println("ID "+u.getId());
+                    System.out.println("NOME "+u.getName());
+                    System.out.println("TEMPO ENTREGA "+u.getTempo());
+                    System.out.println("CIDADE "+u.getCidade());
+
+                }
+                System.out.println("USUARIO: "+mUsers);
+                userAdapter = new UserAdapter(getContext(), mUsers, true);
+                recyclerView.setAdapter(userAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+        /*FirebaseAuth firebaseAuth = Conexao.getFirebaseAuth();
         final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Empresas").child("restaurante"); // nao ta passando a imagem de Users empresa para empresa no firebase
+        //comentário dessa maluquice aqui
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("UserEmpresa"); // nao ta passando a imagem de Users empresa para empresa no firebase
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -133,14 +175,20 @@ public class AguaFragment extends Fragment {
                         Usuarios user = snapshot.getValue(Usuarios.class);
                         assert user != null;
                         mUsers.add(user);
+                        *//*if (!user.getId().equals(firebaseUser.getUid())) {
+                            mUsers.add(user);
+                        }*//*
                     }
+
                     userAdapter = new UserAdapter(getContext(), mUsers, true);
                     recyclerView.setAdapter(userAdapter);
                 }
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
+
             }
-        });
+        });*/
+
     }
 }

@@ -15,5 +15,11 @@
         app:layout_behavior='@string/appbar_scrolling_view_behavior'
         >
     </android.support.v4.view.ViewPager>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/containerC8"
+        android:orientation="vertical">
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

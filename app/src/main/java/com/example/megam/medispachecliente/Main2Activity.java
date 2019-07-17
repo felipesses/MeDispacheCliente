@@ -81,15 +81,10 @@ public class Main2Activity extends AppCompatActivity {
             }
         });
 
-
         final TabLayout tabLayout = findViewById(R.id.tab_layout);
         ViewPager viewPager = findViewById(R.id.view_pager);
         ViewPageAdapter viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager());
         viewPageAdapter.addFragment(new ProfileFragment(), "Conta");
-
-
-
-
 
         viewPager.setAdapter(viewPageAdapter);
         tabLayout.setupWithViewPager(viewPager);
@@ -100,8 +95,6 @@ public class Main2Activity extends AppCompatActivity {
             voltar();
         }
     });
-
-
 
     }
 

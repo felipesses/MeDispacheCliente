@@ -30,7 +30,8 @@
             android:textStyle="bold"
             android:text="Produto 01"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="2dp"/>
+            android:layout_marginLeft="2dp"
+                android:fontFamily="@font/couture_bld"/>
 
             <TextView
                 android:id="@+id/preco_item_carrinho"
@@ -40,7 +41,8 @@
                 android:textStyle="italic"
                 android:text="10,00"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"/>
+                android:layout_marginLeft="2dp"
+                android:fontFamily="@font/couture_bld"/>
 
         </LinearLayout>
 

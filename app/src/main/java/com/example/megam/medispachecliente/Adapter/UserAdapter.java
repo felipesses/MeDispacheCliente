@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.megam.medispachecliente.Carrinho;
@@ -53,7 +54,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         View view = LayoutInflater.from(mContext).inflate(R.layout.user_item, parent, false);
 
         return new ViewHolder(view);
-
     }
 
     @Override
@@ -62,9 +62,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.username.setText(user.getName());
         holder.tempoentrega.setText(user.getTempo());
         holder.valorentrega.setText(user.getValor());
-
-
-
 
         System.out.println("NOME, TEMPO E VALOR DA ENTREGA "+user.getName()+user.getTempo() + user.getValor());
 
@@ -96,18 +93,25 @@ if(ischat){
 
 
 
-holder.itemView.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        Intent intent = new Intent(mContext, Main3Activity.class);
-        intent.putExtra("userID", user.getId());
-        mContext.startActivity(intent);
-        Intent valor = new Intent(mContext, Carrinho.class);
-        valor.putExtra("precoDELIVERI",user.getValor());
-        System.out.println("USER.GETID: "+user.getId());
-        System.out.println("USER.GETID: "+user.getValor());
+if(ischat){
+    if(user.getStatus().equals("online")){
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, Main3Activity.class);
+                intent.putExtra("userID", user.getId());
+                mContext.startActivity(intent);
+            }
+        });
+    }else{
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alert("Estabelecimento Fechado");
+            }
+        });
     }
-});
+}
         holder.mensagem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -196,6 +200,8 @@ theLastMessage = "default";
         }
     });
  }
-
+    private void alert(String msg) {
+        Toast.makeText(mContext,msg,Toast.LENGTH_SHORT).show();
+    }
 
 }

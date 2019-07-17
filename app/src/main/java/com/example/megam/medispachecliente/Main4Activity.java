@@ -1,13 +1,20 @@
 package com.example.megam.medispachecliente;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -29,9 +36,17 @@ import com.example.megam.medispachecliente.control.Conexao;
 import com.example.megam.medispachecliente.fragments.UsersFragment;
 import com.example.megam.medispachecliente.model.Usuarios;
 import com.example.megam.medispachecliente.view.Splash;
+import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -40,28 +55,170 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class Main4Activity extends AppCompatActivity {
-
-    private static final int MY_PERMISSIONS_REQUEST_ACESS_COARSE_LOCATION = 1 ;
-    private FusedLocationProviderClient mFusedLocationClient;
-
+public class Main4Activity extends AppCompatActivity implements LocationListener {
     FirebaseUser user;
     FirebaseAuth auth;
     TextView username;
-    GridLayout maingrid;
     DatabaseReference reference;
     ImageView restaurante, agua, lanchonete, bebidas;
+    private LatLng currentLocationLatLong;
+    String cidade = "cazaquistao";
+    Location locale;
+    Address meuEndereco;
+    String MinhaCidadeAtual = "cazaquistao";
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main4);
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        fetchLocation();
+        Geocoder geocoder = new Geocoder(this);
+        List<Address> addresses = null;
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        boolean isGPS = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        boolean isNetwork = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        boolean canGetLocation = true;
+
+        int ALL_PERMISSIONS_RESULT = 101;
+        long MIN_DISTANCE_CHANGE_FOR_UPDATES = 0;// Distance in meters
+        long MIN_TIME_BW_UPDATES = 1000 * 10;// Time in milliseconds
+
+        ArrayList<String> permissions = new ArrayList<>();
+        ArrayList<String> permissionsToRequest;
+
+        permissions.add(android.Manifest.permission.ACCESS_FINE_LOCATION);
+        permissions.add(android.Manifest.permission.ACCESS_COARSE_LOCATION);
+        permissionsToRequest = findUnAskedPermissions(permissions);
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+
+        if (!isGPS || !isNetwork) {
+            showSettingsAlert();
+        }else if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
+            //Checks if FINE LOCATION and COARSE Location were granted
+            if (ActivityCompat.checkSelfPermission(this,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                    ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION)
+                            != PackageManager.PERMISSION_GRANTED) {
+                return;
+             }
+                        lm.requestLocationUpdates(
+                                LocationManager.GPS_PROVIDER,
+                                MIN_TIME_BW_UPDATES,
+                                MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+
+                        lm.requestLocationUpdates(
+                                LocationManager.NETWORK_PROVIDER,
+                                MIN_TIME_BW_UPDATES,
+                                MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+
+
+                locale = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    try {
+                        locale = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                        addresses = geocoder.getFromLocation(locale.getLatitude(), locale.getLongitude(), 1);
+                        if (addresses.size() != 0) {
+                            if (addresses.size() > 0) {
+                                meuEndereco = addresses.get(0);
+                                cidade = meuEndereco.getSubAdminArea();
+                                Toast.makeText(this, cidade, Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(this, "TUDO ERRADO", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+            while(cidade.equalsIgnoreCase("cazaquistao")) {
+                try {
+                    locale = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    addresses = geocoder.getFromLocation(locale.getLatitude(), locale.getLongitude(), 1);
+                    if (addresses.size() != 0) {
+                        if (addresses.size() > 0) {
+                            meuEndereco = addresses.get(0);
+                            cidade = meuEndereco.getSubAdminArea();
+                            Toast.makeText(this, cidade, Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(this, "TUDO ERRADO", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if (permissionsToRequest.size() > 0) {
+                requestPermissions(permissionsToRequest.toArray(new String[permissionsToRequest.size()]),
+                        ALL_PERMISSIONS_RESULT);
+            }
+            if (ActivityCompat.checkSelfPermission(this,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                    ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION)
+                            != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+            lm.requestLocationUpdates(
+                    LocationManager.GPS_PROVIDER,
+                    MIN_TIME_BW_UPDATES,
+                    MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+
+            lm.requestLocationUpdates(
+                    LocationManager.NETWORK_PROVIDER,
+                    MIN_TIME_BW_UPDATES,
+                    MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+
+            locale = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            try {
+                locale = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                addresses = geocoder.getFromLocation(locale.getLatitude(), locale.getLongitude(), 1);
+                if (addresses.size() != 0) {
+                    if (addresses.size() > 0) {
+                        meuEndereco = addresses.get(0);
+                        cidade = meuEndereco.getSubAdminArea();
+                        Toast.makeText(this, cidade, Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(this, "TUDO ERRADO", Toast.LENGTH_SHORT).show();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            while(cidade.equalsIgnoreCase("cazaquistao")) {
+                try {
+                    locale = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    addresses = geocoder.getFromLocation(locale.getLatitude(), locale.getLongitude(), 1);
+                    if (addresses.size() != 0) {
+                        if (addresses.size() > 0) {
+                            meuEndereco = addresses.get(0);
+                            cidade = meuEndereco.getSubAdminArea();
+                            Toast.makeText(this, cidade, Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(this, "TUDO ERRADO", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
+        if(!isGPS && !isNetwork){
+            MinhaCidadeAtual = "cazaquistao";
+            Toast.makeText(this, MinhaCidadeAtual, Toast.LENGTH_SHORT).show();
+        }else{
+            MinhaCidadeAtual = cidade;
+            Toast.makeText(this, MinhaCidadeAtual, Toast.LENGTH_SHORT).show();
+        }
+
+
 
         restaurante = findViewById(R.id.restaurante);
         agua = findViewById(R.id.agua);
@@ -72,14 +229,14 @@ public class Main4Activity extends AppCompatActivity {
         auth = Conexao.getFirebaseAuth();
         user = auth.getCurrentUser();
 
-        if(user == null){
-            username.setVisibility(View.GONE);
-        }else {
+        if (user == null) {
+            username.setText("USUÁRI@");
+        } else {
             reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
-            reference.addValueEventListener( new ValueEventListener(){
+            reference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    if(dataSnapshot.exists()){
+                    if (dataSnapshot.exists()) {
                         Usuarios u = dataSnapshot.getValue(Usuarios.class);
                         username.setText(u.getName());
                         username.setVisibility(View.VISIBLE);
@@ -88,14 +245,14 @@ public class Main4Activity extends AppCompatActivity {
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
                 }
-                    });
-            }
-        //setSingleEvent(maingrid);
+            });
+        }
 
         restaurante.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new  Intent(getApplicationContext(), Main5Activity.class);
+                Intent i = new Intent(Main4Activity.this, Main5Activity.class);
+                i.putExtra("cidade", MinhaCidadeAtual);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 finish();
@@ -105,7 +262,8 @@ public class Main4Activity extends AppCompatActivity {
         agua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new  Intent(getApplicationContext(), Main7Activity.class);
+                Intent i = new Intent(Main4Activity.this, Main7Activity.class);
+                i.putExtra("cidade", MinhaCidadeAtual);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 finish();
@@ -115,7 +273,8 @@ public class Main4Activity extends AppCompatActivity {
         bebidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new  Intent(getApplicationContext(), Main6Activity.class);
+                Intent i = new Intent(Main4Activity.this, Main6Activity.class);
+                i.putExtra("cidade", MinhaCidadeAtual);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 finish();
@@ -125,113 +284,158 @@ public class Main4Activity extends AppCompatActivity {
         lanchonete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new  Intent(getApplicationContext(), Main8Activity.class);
+                Intent i = new Intent(Main4Activity.this, Main8Activity.class);
+                i.putExtra("cidade", MinhaCidadeAtual);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 finish();
             }
         });
+    }
 
-        try {
-            checkGps();
-        }catch (Exception e){
-            createNoGpsDialog();
+    @Override
+    public void onLocationChanged(Location location) {
+        try{
+            Geocoder geocoder = new Geocoder(getApplicationContext());
+            List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
+            cidade = addresses.get(0).getLocality();
+        }catch (IOException e){
+            e.printStackTrace();
         }
     }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    private void createNoGpsDialog(){
-        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-            @Override
+
+    public Address buscarEndereco(double lat, double lon) throws IOException{
+        Geocoder geocoder;
+        Address address = null;
+        List<Address> addressList;
+        geocoder = new Geocoder(getApplicationContext());
+        addressList = geocoder.getFromLocation(lat,lon,1);
+        if(addressList.size() > 0){
+            address = addressList.get(0);
+        }
+        return address;
+    }
+
+    public ArrayList findUnAskedPermissions(ArrayList<String> wanted) {
+        ArrayList result = new ArrayList();
+        for (String perm : wanted) {
+            if (!hasPermission(perm)) {
+                result.add(perm);
+            }
+        }
+        return result;
+    }
+
+    private boolean hasPermission(String permission) {
+        if (canAskPermission()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                return (checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED);
+            }
+        }
+        return true;
+    }
+
+    private boolean canAskPermission() {
+        return (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1);
+    }
+
+    public void showSettingsAlert() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle("GPS desativado!");
+        alertDialog.setMessage("Ativar GPS?");
+        alertDialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                switch (which) {
-                    case DialogInterface.BUTTON_POSITIVE:
-                        Intent callGPSSettingIntent = new Intent(
-                                android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                        startActivity(callGPSSettingIntent);
-                        break;
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
+                recreate();
+            }
+        });
+
+        alertDialog.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+                finish();
+            }
+        });
+        alertDialog.show();
+    }
+
+
+    private void startGettingLocations() {
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        boolean isGPS = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        boolean isNetwork = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        boolean canGetLocation = true;
+        int ALL_PERMISSIONS_RESULT = 101;
+        long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10;// Distance in meters
+        long MIN_TIME_BW_UPDATES = 1000 * 10;// Time in milliseconds
+
+        ArrayList<String> permissions = new ArrayList<>();
+        ArrayList<String> permissionsToRequest;
+
+        permissions.add(android.Manifest.permission.ACCESS_FINE_LOCATION);
+        permissions.add(android.Manifest.permission.ACCESS_COARSE_LOCATION);
+        permissionsToRequest = findUnAskedPermissions(permissions);
+
+        //Check if GPS and Network are on, if not asks the user to turn on
+        if (!isGPS && !isNetwork) {
+            showSettingsAlert();
+        } else {
+            // check permissions
+
+            // check permissions for later versions
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (permissionsToRequest.size() > 0) {
+                    requestPermissions(permissionsToRequest.toArray(new String[permissionsToRequest.size()]),
+                            ALL_PERMISSIONS_RESULT);
+                    canGetLocation = false;
                 }
             }
-        };
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        AlertDialog mNoGpsDialog = builder.setMessage("Por favor ative o seu gps").
-                setPositiveButton("Ativar", dialogClickListener).
-                create();
+        }
+        //Checks if FINE LOCATION and COARSE Location were granted
+        if (ActivityCompat.checkSelfPermission(this,
+                android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "Permissão negada", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        //Starts requesting location updates
+        if (canGetLocation) {
+            if (isGPS) {
+                lm.requestLocationUpdates(
+                        LocationManager.GPS_PROVIDER,
+                        MIN_TIME_BW_UPDATES,
+                        MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
 
-        mNoGpsDialog.show();
-    }
+            } else if (isNetwork) {
+                // from Network Provider
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    private void fetchLocation() {
-        if (ContextCompat.checkSelfPermission(Main4Activity.this,
-                Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            // Permission is not granted
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(Main4Activity.this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION)) {
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-                new AlertDialog.Builder(this)
-                        .setTitle("É necessário a permissão da sua localização")
-                        .setMessage("Você precisa desta permissão para acessar o conteúdo")
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-
-                                ActivityCompat.requestPermissions(Main4Activity.this,
-                                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                                        MY_PERMISSIONS_REQUEST_ACESS_COARSE_LOCATION);
-                            }
-                        })
-                        .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.dismiss();
-                            }
-                        })
-                        .create()
-                        .show();
-            } else {
-                // No explanation needed; request the permission
-                ActivityCompat.requestPermissions(Main4Activity.this,
-                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_ACESS_COARSE_LOCATION);
-
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
+                lm.requestLocationUpdates(
+                        LocationManager.NETWORK_PROVIDER,
+                        MIN_TIME_BW_UPDATES,
+                        MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
             }
         } else {
-            // Permission has already been granted
-            mFusedLocationClient.getLastLocation()
-                    .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                        @Override
-                        public void onSuccess(Location location) {
-                            // Got last known location. In some rare situations this can be null.
-                            if (location != null) {
-                                // Logic to handle location object
-                            }
-                        }
-                    });
+            Toast.makeText(this, "Não é possível obter a localização", Toast.LENGTH_SHORT).show();
         }
     }
+
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode ==  MY_PERMISSIONS_REQUEST_ACESS_COARSE_LOCATION )
-        {
-            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+    public void onStatusChanged(String s, int i, Bundle bundle) {
 
-            } else {
-
-            }
-        }
     }
-    public void checkGps() throws Exception {
-        LocationManager manager; manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
-            throw new Exception("gps off"); } }
 
+    @Override
+    public void onProviderEnabled(String s) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String s) {
+
+    }
 
 
 }

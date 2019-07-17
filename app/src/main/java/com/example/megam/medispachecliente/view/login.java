@@ -37,8 +37,6 @@ public class login extends AppCompatActivity {
         inicializarcomponentes();
         auth = Conexao.getFirebaseAuth();
         EventoClicks();
-
-
     }
 
     private void EventoClicks() {

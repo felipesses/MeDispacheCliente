@@ -9,12 +9,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amulyakhare.textdrawable.TextDrawable;
+import com.example.megam.medispachecliente.Carrinho;
 import com.example.megam.medispachecliente.Interface.ItemClickListener;
+import com.example.megam.medispachecliente.Main3Activity;
+import com.example.megam.medispachecliente.Main4Activity;
 import com.example.megam.medispachecliente.R;
 import com.example.megam.medispachecliente.model.Pedidos;
 import com.example.megam.medispachecliente.sql.pedido_db;
@@ -44,8 +48,13 @@ class CarrinhoViewHolder extends RecyclerView.ViewHolder implements View.OnClick
         itemView.setOnClickListener(this);
     }
 
+    public void setItemClickListener(ItemClickListener itemClickListener){
+    this.itemClickListener = itemClickListener;
+    }
+
     @Override
     public void onClick(View view) {
+        itemClickListener.onClick(view, getAdapterPosition(),false);
     }
 }
 
@@ -53,7 +62,7 @@ class CarrinhoViewHolder extends RecyclerView.ViewHolder implements View.OnClick
 public class CarrinhoAdapter extends RecyclerView.Adapter <CarrinhoViewHolder> {
 
    private List<Pedidos> listaDados = new ArrayList<>();
-    private Context context;
+   private Context context;
 
     public CarrinhoAdapter(List<Pedidos> listaDados, Context context) {
         this.listaDados = listaDados;
@@ -69,7 +78,7 @@ public class CarrinhoAdapter extends RecyclerView.Adapter <CarrinhoViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CarrinhoViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final CarrinhoViewHolder holder, final int position) {
         TextDrawable drawable = TextDrawable.builder()
                 .buildRound(""+listaDados.get(position).getQuantidadeProduto(), Color.RED);
         holder.img_quantidade.setImageDrawable(drawable); // Seta a quantidade de produtos dentro de um círculo vermelho
@@ -81,13 +90,14 @@ public class CarrinhoAdapter extends RecyclerView.Adapter <CarrinhoViewHolder> {
 
         holder.txt_nome_produto.setText(listaDados.get(position).getNomeProduto()); // seta o nome do  produto
 
-        holder.del_pedidos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("DELETADO LINDO");
-                new pedido_db(context).limpar_Carrinho();
-            }
-            //É UMA SOLUCAO PROVISÓRIA PARA DELETAR OS PEDIDOS
+       holder.itemView.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+              System.out.println(listaDados.get(position).getNomeProduto());
+              new pedido_db(context).limpar_posicao(listaDados.get(position).getNomeProduto());
+              listaDados.remove(position);
+              notifyDataSetChanged();
+           }
         });
     }
 

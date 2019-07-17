@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/bequigraund"
+    android:background="#BA2323"
     android:weightSum="8"
     tools:context=".MainActivity">
 
@@ -20,11 +20,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bem Vindo"
+        android:text="BEM VINDO,"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
-        android:fontFamily="@font/xilosa_"
-        android:textSize="18sp"
+        android:fontFamily="@font/couture_bld"
+        android:textSize="14sp"
         android:textColor="#fff"
         android:textStyle="normal"
         />
@@ -32,13 +32,13 @@
         android:id="@+id/nomeuser"
         android:text="nomeuser"
         android:textColor="#fff"
-        android:textStyle="normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginStart="5dp"
-        android:fontFamily="@font/xilosa_"
-        android:textSize="18sp">
+        android:fontFamily="@font/couture_bld"
+        android:textSize="14sp"
+        android:textStyle="normal">
     </TextView>
 </LinearLayout>
     <GridLayout
@@ -69,14 +69,16 @@
                 android:layout_height="140dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginLeft="30dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@drawable/backgroun_empresas">
             <ImageView
                 android:id="@+id/bebidas"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/bottle">
+                android:layout_marginTop="10dp"
+                android:src="@drawable/bottle"
+                >
             </ImageView>
             <TextView
                 android:layout_width="100dp"
@@ -84,12 +86,11 @@
                 android:layout_alignBottom="@+id/bebidas"
                 android:layout_centerHorizontal="true"
                 android:textAlignment="center"
-                android:text="DEPÓSITOS"
-                android:textColor="@color/white"
-                android:textStyle="normal"
-                android:layout_marginBottom="-20dp"
-                android:fontFamily="@font/xilosa_"
-                android:textSize="20sp"
+                android:text="DEPÓSITO"
+                android:textColor="@color/negra"
+                android:layout_marginBottom="-22dp"
+                android:fontFamily="@font/couture_bld"
+                android:textSize="14sp"
                 >
             </TextView>
         </RelativeLayout>
@@ -102,13 +103,14 @@
             android:layout_height="140dp"
             android:layout_marginTop="50dp"
             android:layout_marginLeft="180dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/backgroun_empresas">
             <ImageView
                 android:id="@+id/restaurante"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
                 android:src="@drawable/rest" />
             <TextView
                 android:layout_width="140dp"
@@ -117,11 +119,10 @@
                 android:layout_centerHorizontal="true"
                 android:textAlignment="center"
                 android:text="RESTAURANTE"
-                android:textColor="@color/white"
-                android:textStyle="normal"
-                android:layout_marginBottom="-20dp"
-                android:fontFamily="@font/xilosa_"
-                android:textSize="20sp"
+                android:textColor="@color/negra"
+                android:layout_marginBottom="-22dp"
+                android:fontFamily="@font/couture_bld"
+                android:textSize="14sp"
                 >
             </TextView>
         </RelativeLayout>
@@ -137,14 +138,15 @@
             android:layout_height="140dp"
             android:layout_marginTop="230dp"
             android:layout_marginLeft="30dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/backgroun_empresas">
 
             <ImageView
                 android:id="@+id/agua"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
                 android:src="@drawable/agas" />
             <TextView
                 android:layout_width="100dp"
@@ -153,11 +155,10 @@
                 android:layout_centerHorizontal="true"
                 android:textAlignment="center"
                 android:text="ÁGUA E GÁS"
-                android:textColor="@color/white"
-                android:textStyle="normal"
-                android:layout_marginBottom="-20dp"
-                android:fontFamily="@font/xilosa_"
-                android:textSize="20sp"
+                android:textColor="@color/negra"
+                android:layout_marginBottom="-22dp"
+                android:fontFamily="@font/couture_bld"
+                android:textSize="14sp"
                 >
             </TextView>
 
@@ -172,16 +173,16 @@
             android:layout_height="140dp"
             android:layout_marginTop="230dp"
             android:layout_marginLeft="180dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/backgroun_empresas">
 
             <ImageView
                 android:id="@+id/lanchonete"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
                 android:src="@drawable/lanc" />
-
             <TextView
                 android:layout_width="110dp"
                 android:layout_height="18dp"
@@ -189,11 +190,10 @@
                 android:layout_centerHorizontal="true"
                 android:textAlignment="center"
                 android:text="LANCHONETE"
-                android:textColor="@color/white"
-                android:textStyle="normal"
-                android:layout_marginBottom="-20dp"
-                android:fontFamily="@font/xilosa_"
-                android:textSize="20sp"
+                android:textColor="@color/negra"
+                android:layout_marginBottom="-22dp"
+                android:fontFamily="@font/couture_bld"
+                android:textSize="14sp"
                 >
             </TextView>
         </RelativeLayout>

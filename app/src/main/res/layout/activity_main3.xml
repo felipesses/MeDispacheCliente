@@ -12,11 +12,11 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:padding="20dp"
-        android:text="Faça seu pedido"
+        android:text="FAÇA SEU PEDIDO"
         android:textAlignment="center"
-        android:textSize="28sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:fontFamily="@font/xilosa_"/>
+        android:fontFamily="@font/couture_bld"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"

@@ -53,9 +53,12 @@ public class Main5Activity extends AppCompatActivity
         auth = Conexao.getFirebaseAuth();
         user = auth.getCurrentUser();
         //finish init
+        Bundle extras = getIntent().getExtras();
+        String value = extras.getString("cidade");
+        System.out.println("VALUE "+value.toLowerCase());
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+       /* FloatingActionButton fab = findViewById(R.id.fab);
+            fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(user==null){
@@ -66,7 +69,7 @@ public class Main5Activity extends AppCompatActivity
                 }
 
             }
-        });
+        });*/
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -80,19 +83,27 @@ public class Main5Activity extends AppCompatActivity
         if(user == null){
             ViewPager viewPager = findViewById(R.id.view_pager);
             ViewPageAdapter viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager());
-            viewPageAdapter.addFragment(new UsersFragment(), "");
+            Bundle bundle = new Bundle();
+            bundle.putString("edttext", value);
+            UsersFragment fragobj = new UsersFragment();
+            fragobj.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction().replace(R.id.containerC5, fragobj)
+                    .commit();
             viewPager.setAdapter(viewPageAdapter);
         }else {
             reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
 
             ViewPager viewPager = findViewById(R.id.view_pager);
             ViewPageAdapter viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager());
-            viewPageAdapter.addFragment(new UsersFragment(), "Estabelecimentos");
-
+            Bundle bundle = new Bundle();
+            bundle.putString("edttext", value);
+            UsersFragment fragobj = new UsersFragment();
+            fragobj.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction().replace(R.id.containerC5, fragobj)
+                    .commit();
             viewPager.setAdapter(viewPageAdapter);
 
             reference = FirebaseDatabase.getInstance().getReference("Chats");
-
             reference.addValueEventListener(new ValueEventListener() {
 
                 @Override
@@ -150,20 +161,7 @@ public class Main5Activity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-            //LOGIN
-            if(user!= null){
-              alert("Você já realizou seu login, para entrar em outra conta saia dessa antes!");
-            }else{
-                Intent i = new  Intent(getApplicationContext(), login.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
-                finish();
-            }
-
-        } else if (id == R.id.nav_slideshow) {
+        if (id == R.id.nav_slideshow) {
             //PERFIL
             if(user==null){
                 alert("Verifique se você já fez seu cadastro ou login!");
@@ -173,21 +171,29 @@ public class Main5Activity extends AppCompatActivity
                 startActivity(i);
                 finish();
             }
-        } /*else if (id == R.id.nav_tools) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }*/
+        } else if (id == R.id.nav_gallery) {
+            //LOGIN
+            if(user!= null){
+                alert("Você já realizou seu login, para entrar em outra conta saia dessa antes!");
+            }else{
+                Intent i = new  Intent(getApplicationContext(), login.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+                finish();
+            }
+        }else if(id == R.id.nav_exit){
+            Conexao.logOut();
+            Intent i = new Intent(getApplicationContext(), login.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
+            finish();
+        }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-
-    // CLASSE QUE RECEBE OS ARRAY DOS ESTABELECIMENTOS ...
     class ViewPageAdapter extends FragmentStatePagerAdapter {
         private ArrayList<Fragment> fragments;
         private ArrayList<String> titles;
@@ -196,7 +202,6 @@ public class Main5Activity extends AppCompatActivity
             super(fm);
             this.fragments = new ArrayList<>();
             this.titles = new ArrayList<>();
-
         }
 
         @Override

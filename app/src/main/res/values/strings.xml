@@ -270,7 +270,7 @@
     <string name="meus_containers">Meus containers</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_local">Map</string>
-    <string name="title_activity_main5">Main5Activity</string>
+    <string name="title_activity_main5">Restaurantes</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Login</string>
@@ -278,9 +278,9 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
-    <string name="title_activity_main6">Main6Activity</string>
-    <string name="title_activity_main7">Main7Activity</string>
-    <string name="title_activity_main8">Main8Activity</string>
+    <string name="title_activity_main6">Depósitos</string>
+    <string name="title_activity_main7">Serviços</string>
+    <string name="title_activity_main8">Lanchonetes</string>
 
 
 </resources>

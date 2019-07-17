@@ -23,7 +23,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="60dp"
         android:textColor="@color/negra"
-        android:fontFamily="@font/xilosa_"/>
+        android:fontFamily="@font/couture_bld"/>
         <!--android:textStyle="bold"-->
 
     <TextView
@@ -39,7 +39,7 @@
         android:maxLines="1"
         android:textSize="18sp"
         android:text="123"
-        android:fontFamily="@font/xilosa_"
+        android:fontFamily="@font/couture_bld"
         />
 
 <!--

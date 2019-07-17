@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.usercadastro"
+    android:background=" #B26921"
     >
 
     <RelativeLayout
@@ -21,7 +22,7 @@
             android:layout_centerHorizontal="true"
             android:layout_width="240dp"
             android:layout_height="50dp"
-            android:layout_marginTop="275dp"
+            android:layout_marginTop="255dp"
             android:padding="2dp"
             android:background="@drawable/background_spinner"
             >
@@ -34,13 +35,13 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/cidade"
             android:ems="10"
-            android:hint="Rua, Bairro e Número"
+            android:hint="RUA, BAIRRO E NÚMERO"
             android:inputType="textPersonName"
-            android:textColorHint="@color/bk"
+            android:textColorHint="@color/white"
             android:textColorLink="@color/white"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:fontFamily="@font/xilosa_"/>
+            android:fontFamily="@font/couture_bld"/>
 
         <EditText
             android:id="@+id/userpass"
@@ -51,11 +52,11 @@
             android:ems="10"
             android:hint="Senha"
             android:inputType="textPassword"
-            android:textColorHint="@color/bk"
+            android:textColorHint="@color/white"
             android:textColorLink="@color/white"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:fontFamily="@font/xilosa_"/>
+            android:fontFamily="@font/couture_bld"/>
 
         <EditText
             android:id="@+id/useradress"
@@ -66,11 +67,11 @@
             android:ems="10"
             android:hint="Email"
             android:inputType="textEmailAddress"
-            android:textColorHint="@color/bk"
+            android:textColorHint="@color/white"
             android:textColorLink="@color/white"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:fontFamily="@font/xilosa_"/>
+            android:fontFamily="@font/couture_bld"/>
 
         <EditText
             android:id="@+id/username"
@@ -82,11 +83,11 @@
             android:ems="10"
             android:hint="Nome"
             android:inputType="textPersonName"
-            android:textColorHint="@color/bk"
+            android:textColorHint="@color/white"
             android:textColorLink="@color/white"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:fontFamily="@font/xilosa_"/>
+            android:fontFamily="@font/couture_bld"/>
 
 
         <TextView
@@ -97,10 +98,11 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="51dp"
             android:lineSpacingExtra="10sp"
-            android:text="Cadastro de Usuário"
-            android:textSize="24sp"
-            android:textStyle="bold|italic"
-            android:fontFamily="@font/xilosa_"/>
+            android:text="CADASTRO DE USUÁRIO"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/couture_bld"
+            android:textColor="@color/white"/>
 
 
         <ImageView

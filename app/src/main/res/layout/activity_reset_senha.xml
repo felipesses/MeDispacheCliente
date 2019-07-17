@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.ResetSenha"
+    android:background="#B22222"
     >
 
     <EditText
@@ -17,8 +18,8 @@
         android:ems="10"
         android:hint="Digite seu email "
         android:inputType="textEmailAddress"
-        android:textColorHint="@color/colorAccent"/>
-
+        android:textColorHint="@color/white"
+        android:fontFamily="@font/couture_bld"/>
 
 
     <ImageView

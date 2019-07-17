@@ -5,6 +5,4 @@ import com.example.megam.medispachecliente.model.Usuarios;
 public class Common {
 
     public static Usuarios currentUser;
-
-
 }

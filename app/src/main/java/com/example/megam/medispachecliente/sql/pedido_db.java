@@ -65,8 +65,6 @@ public class pedido_db extends SQLiteAssetHelper {
         System.out.println(pedidos.getNomeProduto() + pedidos.getPrecoProduto() + pedidos.getQuantidadeProduto() + pedidos.getIdProduto());
     }
 
-
-
     public void limpar_Carrinho(){
         SQLiteDatabase db =  getReadableDatabase();
         String query = String.format("DELETE FROM Detalhespedidos");
@@ -74,5 +72,10 @@ public class pedido_db extends SQLiteAssetHelper {
         System.out.println(query);
     }
 
-
+    public void limpar_posicao(String nome){
+        SQLiteDatabase db =  getReadableDatabase();
+        String query = String.format("DELETE FROM Detalhespedidos where Nomeproduto = '"+nome+"'");
+        db.execSQL(query);
+        System.out.println(query);
+    }
 }

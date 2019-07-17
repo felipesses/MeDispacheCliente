@@ -97,7 +97,6 @@ public class view_detail_pedido extends AppCompatActivity {
     }
 
     private void setButtonListener(){
-
             addProduto.setOnClickListener(new View.OnClickListener() { // envia o produto para o carrinho
                 @Override
                 public void onClick(View view) {

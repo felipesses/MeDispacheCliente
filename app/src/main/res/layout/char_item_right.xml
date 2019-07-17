@@ -27,7 +27,8 @@
     android:layout_alignParentEnd="true"
     android:padding="8dp"
     android:textColor="#fff"
-    android:layout_alignParentRight="true" />
+    android:layout_alignParentRight="true"
+    android:fontFamily="@font/couture_bld"/>
 
 <TextView
     android:layout_width="wrap_content"

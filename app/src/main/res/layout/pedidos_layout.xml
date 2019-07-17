@@ -28,7 +28,8 @@
                 android:textAllCaps="true"
                 android:textStyle="bold"
                 android:text="#11111111111"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/couture_bld"/>
 
             <TextView
                 android:id="@+id/pedido_status"
@@ -37,7 +38,8 @@
                 android:textAllCaps="true"
                 android:textStyle="italic"
                 android:text="status"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/couture_bld"/>
 
             <TextView
                 android:id="@+id/pedido_pessoa_nome"
@@ -46,7 +48,8 @@
                 android:textAllCaps="true"
                 android:textStyle="italic"
                 android:text="Nome Pessoa"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/couture_bld"/>
             <TextView
                 android:id="@+id/pedido_endereco"
                 android:gravity="center_vertical|start"
@@ -54,7 +57,8 @@
                 android:textAllCaps="true"
                 android:textStyle="italic"
                 android:text="endereco"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/couture_bld"/>
 
 
         </LinearLayout>

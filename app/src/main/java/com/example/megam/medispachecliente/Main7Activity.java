@@ -54,7 +54,11 @@ public class Main7Activity extends AppCompatActivity
         user = auth.getCurrentUser();
         //finish init
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        Bundle extras = getIntent().getExtras();
+        String value = extras.getString("cidade");
+        System.out.println("VALUE "+value.toLowerCase());
+
+        /*FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,7 +69,7 @@ public class Main7Activity extends AppCompatActivity
                             .setAction("Action", null).show();
                 }
             }
-        });
+        });*/
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -77,16 +81,24 @@ public class Main7Activity extends AppCompatActivity
         if(user==null){
             ViewPager viewPager = findViewById(R.id.view_pager);
             ViewPageAdapter viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager());
-            viewPageAdapter.addFragment(new AguaFragment(), "");
+            Bundle bundle = new Bundle();
+            bundle.putString("edttext", value);
+            AguaFragment fragobj = new AguaFragment();
+            fragobj.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction().replace(R.id.containerC7, fragobj)
+                    .commit();
             viewPager.setAdapter(viewPageAdapter);
         }else{
             reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
             ViewPager viewPager = findViewById(R.id.view_pager);
             ViewPageAdapter viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager());
-            viewPageAdapter.addFragment(new AguaFragment(), "Estabelecimentos");
-
+            Bundle bundle = new Bundle();
+            bundle.putString("edttext", value);
+            AguaFragment fragobj = new AguaFragment();
+            fragobj.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction().replace(R.id.containerC7, fragobj)
+                    .commit();
             viewPager.setAdapter(viewPageAdapter);
-
             reference = FirebaseDatabase.getInstance().getReference("Chats");
             reference.addValueEventListener(new ValueEventListener() {
 
@@ -147,8 +159,16 @@ public class Main7Activity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
-            // Handle the camera action
+        if (id == R.id.nav_slideshow) {
+            //PERFIL
+            if(user==null){
+                alert("Verifique se você já fez seu cadastro ou login!");
+            }else {
+                Intent i = new Intent(getApplicationContext(), Main2Activity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+                finish();
+            }
         } else if (id == R.id.nav_gallery) {
             //LOGIN
             if(user!= null){
@@ -159,23 +179,12 @@ public class Main7Activity extends AppCompatActivity
                 startActivity(i);
                 finish();
             }
-        } else if (id == R.id.nav_slideshow) {
-            //PERFIL
-            if(user==null){
-                alert("Verifique se você já fez seu cadastro ou login!");
-            }else {
-                Intent i = new Intent(getApplicationContext(), Main2Activity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
-                finish();
-            }
-        } /*else if (id == R.id.nav_tools) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }*/
+        }else if(id == R.id.nav_exit){ Conexao.logOut();
+            Intent i = new Intent(getApplicationContext(), login.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
+            finish();
+        }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

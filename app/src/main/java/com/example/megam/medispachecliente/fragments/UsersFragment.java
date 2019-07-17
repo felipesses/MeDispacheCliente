@@ -1,5 +1,8 @@
 package com.example.megam.medispachecliente.fragments;
 
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -11,12 +14,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.megam.medispachecliente.Adapter.UserAdapter;
 import com.example.megam.medispachecliente.Notifications.Token;
 import com.example.megam.medispachecliente.R;
 import com.example.megam.medispachecliente.control.Conexao;
 import com.example.megam.medispachecliente.model.Usuarios;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -27,6 +32,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +44,8 @@ public class UsersFragment extends Fragment {
     EditText search_users;
     FirebaseUser user;
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,9 +56,14 @@ public class UsersFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mUsers = new ArrayList<>();
         user = FirebaseAuth.getInstance().getCurrentUser();
-        readUsers();
         search_users = view.findViewById(R.id.search_user);
-        search_users.setVisibility(view.getVisibility()); //View.GONE
+        search_users.setVisibility(View.GONE); //View.GONE
+
+        Bundle bundle = this.getArguments();
+        String strtext = bundle.getString("edttext").toLowerCase();
+        System.out.println("SEI NEM OQ E ISSO"+strtext);
+
+        readUsers(strtext);
 
         if(user==null){
             search_users.addTextChangedListener(new TextWatcher() {
@@ -88,7 +101,6 @@ public class UsersFragment extends Fragment {
             });
             updateToken(FirebaseInstanceId.getInstance().getToken());
         }
-
         return view;
     }
 
@@ -98,43 +110,39 @@ public class UsersFragment extends Fragment {
         reference.child(user.getUid()).setValue(token1);
     }
 
-    private void searchUsers(String s) { // AJEITAR ISSO AQUI PARA A PESSOA FAZER A PESQUISA DELA PELO NOME DO ESTABELECIMENTO
-        s = "santo amaro";
+    private void searchUsers(String s) { // FAZENDO A PESQUISA CERTINHO
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Query query = FirebaseDatabase.getInstance().getReference("Empresas").child("restaurante").orderByChild("search")
+        Query query = FirebaseDatabase.getInstance().getReference("Empresas").child("restaurante").orderByChild("name")
                 .startAt(s)
                 .endAt(s+"\uf8ff");
-        System.out.println("TEM UM FUCKINIG S AQUI PRA OLHAR: "+s);
-                query.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                        mUsers.clear();
-                        for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                            Usuarios u = snapshot.getValue(Usuarios.class);
-                            mUsers.add(u);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mUsers.clear();
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Usuarios u = snapshot.getValue(Usuarios.class);
+                    mUsers.add(u);
                             /*if(!u.getId().equals(user.getUid())){
                                 mUsers.add(u);
                             }*/
-                        }
-                        userAdapter = new UserAdapter(getContext(), mUsers, true);
-                        recyclerView.setAdapter(userAdapter);
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
                 }
+                userAdapter = new UserAdapter(getContext(), mUsers, true);
+                recyclerView.setAdapter(userAdapter);
+            }
 
-    private void readUsers() { // O OBJETIVO AQUI É PASSAR A LOCALIZAÇÃO ATUAL DA PESSOA NO LUGAR DO TEXTO DA STRING
-        String city = "santo amaro";
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void readUsers(String cidadezinha) { // O OBJETIVO AQUI É PASSAR A LOCALIZAÇÃO ATUAL DA PESSOA NO LUGAR DO TEXTO DA STRING
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Query query = FirebaseDatabase.getInstance().getReference("Empresas").child("restaurante").orderByChild("search")
-                .startAt(city)
-                .endAt(city+"\uf8ff");
-        System.out.println("TEM UM FUCKINIG city AQUI PRA OLHAR: "+city);
+                .startAt(cidadezinha)
+                .endAt(cidadezinha+"\uf8ff");
+        System.out.println("TEM UM FUCKINIG city AQUI PRA OLHAR: "+cidadezinha);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

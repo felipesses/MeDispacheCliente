@@ -57,12 +57,9 @@ public class PedidosStatus extends AppCompatActivity {
 
         FirebaseRecyclerOptions<Request> requisicao = new FirebaseRecyclerOptions.Builder<Request>()
                 .setQuery(requests = FirebaseDatabase.getInstance().getReference("Requests").child(IdUsuario.getUid()), Request.class)
-                .build(); // acho que aqui tem que passar o id da empresa e depois o id da pessoa
-
-
+                .build();
 
             super.onPostResume();
-
             adapter = new FirebaseRecyclerAdapter<Request, ListaPedidosAdapter>(requisicao){
                 @NonNull
                 @Override
@@ -77,7 +74,7 @@ public class PedidosStatus extends AppCompatActivity {
                 protected void onBindViewHolder(@NonNull ListaPedidosAdapter holder, int position, @NonNull Request model) {
                     holder.txt_nome_pedido.setText(adapter.getRef(position).getKey());
                     //holder.txt_status_pedido.setText(converteCodeTostatus(model.getStatus()));
-                    holder.txt_nome_pessoa.setText((model.getEndereco())); // corrigir aqui para passar o nome do produto
+                    holder.txt_nome_pessoa.setText((model.getNome())); // corrigir aqui para passar o nome do produto
                     holder.txt_endereco.setText((model.getEndereco()));
                 }
             };

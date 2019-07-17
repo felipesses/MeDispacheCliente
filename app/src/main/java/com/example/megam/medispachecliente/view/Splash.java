@@ -28,10 +28,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Splash extends AppCompatActivity {
-    /////////////////////////////////////////////////////////////////////////////////
-    private static final int MY_PERMISSIONS_REQUEST_ACESS_COARSE_LOCATION = 1 ;
-    private FusedLocationProviderClient mFusedLocationClient;
-
     private FirebaseAuth auth;
     FirebaseUser user;
     @Override

@@ -6,21 +6,27 @@
     android:background="@color/white"
     tools:context=".fragments.UsersFragment">
 
-
-  <EditText
+ <EditText
       android:layout_width="250dp"
       android:layout_height="55dp"
       android:layout_margin="7dp"
-      android:hint="Quer comer onde?"
+      android:hint="QUER COMER ONDE?"
       android:textColorLink="@color/gray"
       android:padding="16dp"
-      android:fontFamily="@font/xilosa_"
-      android:textSize="22sp"
+      android:fontFamily="@font/couture_bld"
+      android:textSize="16sp"
       android:id="@+id/search_user"
       android:textAlignment="center"
       android:layout_centerHorizontal="true"
       android:textColorHighlight="@color/gray">
   </EditText>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:id="@+id/container"
+      android:orientation="vertical">
+  </LinearLayout>
 
   <android.support.v7.widget.RecyclerView
       android:layout_below="@id/search_user"

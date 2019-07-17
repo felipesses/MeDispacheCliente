@@ -34,7 +34,8 @@
                 android:layout_marginStart="25dp"
                 android:text="nomeuser"
                 android:textColor="#fff"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/couture_bld"/>
 
         </android.support.v7.widget.Toolbar>
 

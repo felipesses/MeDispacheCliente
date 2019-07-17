@@ -4,15 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.login"
+    android:background="#B22222"
     >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="335dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="57dp">
+        android:layout_height="490dp"
+        android:layout_centerInParent="true">
 
 
         <TextView
@@ -22,20 +20,27 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:text="Esqueci minha senha"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/white"
+            android:fontFamily="@font/couture_bld"
+            android:textSize="12sp"/>
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/splashf"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="41dp"
-            android:text="Login do Usuário"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/xilosa_"
+            android:id="@+id/logo_login"
             />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/loginadress"
+            android:layout_marginTop="7dp"
+            android:layout_marginRight="-1dp"
+            android:layout_toLeftOf="@id/loginpass"
+            android:src="@drawable/ic_lock_outline_black_24dp" />
 
         <EditText
             android:id="@+id/loginpass"
@@ -43,55 +48,61 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/loginadress"
             android:layout_centerHorizontal="true"
-            android:layout_x="15dp"
-            android:layout_y="128dp"
             android:ems="10"
             android:hint="Senha"
             android:inputType="textPassword"
-            android:textColorHint="@color/bk"
-            android:textSize="24sp"
+            android:textColorHint="@color/white"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:fontFamily="@font/xilosa_"
+            android:fontFamily="@font/couture_bld"
             />
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/logo_login"
+            android:layout_marginTop="83dp"
+            android:layout_marginRight="1dp"
+            android:layout_toLeftOf="@id/loginadress"
+            android:src="@drawable/ic_mail_outline_black_24dp" />
 
         <EditText
             android:id="@+id/loginadress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="108dp"
-            android:layout_x="14dp"
-            android:layout_y="60dp"
+            android:layout_below="@id/logo_login"
+            android:layout_marginTop="75dp"
             android:ems="10"
             android:hint="Email"
             android:inputType="textEmailAddress"
-            android:textColorHint="@color/bk"            android:textSize="24sp"
+            android:textColorHint="@color/white"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:fontFamily="@font/xilosa_"
+            android:fontFamily="@font/couture_bld"
             />
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:id="@+id/Loginbotao"
-            android:src="@drawable/botao_entrar"
-            android:layout_marginTop="30dp"
-            android:layout_below="@+id/loginpass"
-            android:layout_alignRight="@id/loginpass"
-            />
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:id="@+id/novocad"
-            android:src="@drawable/botcad"
-            android:layout_below="@+id/loginpass"
-            android:layout_alignLeft="@id/loginpass"
-            android:layout_marginTop="30dp"
-            />
-
-
-
-
+        <LinearLayout
+            android:layout_width="225dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/loginpass"
+            android:layout_centerHorizontal="true">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:id="@+id/Loginbotao"
+                android:src="@drawable/botao_entrar"
+                android:layout_marginTop="30dp"
+                />
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:id="@+id/novocad"
+                android:src="@drawable/botcad"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="25dp"
+                />
+        </LinearLayout>
     </RelativeLayout>
 
 
