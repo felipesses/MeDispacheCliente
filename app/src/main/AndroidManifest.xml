@@ -16,7 +16,8 @@
         android:roundIcon="@drawable/iconetres"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="android:icon">
+        tools:replace="android:icon"
+        >
         <activity android:name=".view.Confirmado_pedido"></activity>
         <activity
             android:name=".Main8Activity"
@@ -110,3 +111,4 @@
     </application>
 
 </manifest>
+
